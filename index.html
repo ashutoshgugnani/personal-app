@@ -12,425 +12,393 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <title>Ashutosh · Abs Protocol</title>
 <style>
-  :root {
-    /* Apple iOS Dark Mode / VisionOS Translucent Palette */
-    --bg: #000000;
-    --ink: #FFFFFF;
-    --muted: #9898ED;
-    --sub-txt: #AEAEB2;
-    --line: rgba(255, 255, 255, 0.12);
-    --hairline: rgba(255, 255, 255, 0.08);
-    
-    /* Apple Premium Glassmorphism Specs */
-    --glass: rgba(255, 255, 255, 0.07);
-    --glass-strong: rgba(255, 255, 255, 0.12);
-    --glass-border: rgba(255, 255, 255, 0.15);
-    --glass-border-glow: rgba(255, 255, 255, 0.25);
-    --card: var(--glass);
-    
-    /* SF Accents */
-    --accent: #FF453A; /* SF Red */
-    --accent-deep: #FF3B30;
-    --accent-soft: rgba(255, 69, 58, 0.18);
-    
-    --teal: #30D158; /* SF Green */
-    --teal-soft: rgba(48, 209, 88, 0.15);
-    
-    --gold: #FFD60A; /* SF Yellow */
-    --gold-soft: rgba(255, 214, 10, 0.15);
-    
-    --purple: #BF5AF2; /* SF Purple */
-    --purple-soft: rgba(191, 90, 242, 0.15);
-    
-    --sky: #0A84FF; /* SF Blue */
-    --pink: #FF375F;
-    
-    --radius: 24px;
-    --radius-s: 14px;
-    --serif: -apple-system, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
-    --blur: blur(35px) saturate(2.1);
-    --shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  :root{
+    --bg:#000000; --ink:#FFFFFF; --muted:#AEAEB2; --sub-txt:#AEAEB2;
+    --line:rgba(255,255,255,.12); --hairline:rgba(255,255,255,.08);
+    --glass:rgba(255,255,255,.07); --glass-strong:rgba(255,255,255,.12);
+    --glass-border:rgba(255,255,255,.15); --glass-border-glow:rgba(255,255,255,.25);
+    --card:var(--glass);
+    --accent:#FF453A; --accent-deep:#FF3B30; --accent-soft:rgba(255,69,58,.18);
+    --teal:#30D158; --teal-soft:rgba(48,209,88,.15);
+    --gold:#FFD60A; --gold-soft:rgba(255,214,10,.15);
+    --purple:#BF5AF2; --purple-soft:rgba(191,90,242,.15);
+    --sky:#0A84FF; --pink:#FF375F;
+    --radius:24px; --radius-s:14px;
+    --serif:-apple-system,'SF Pro Display','SF Pro Text','Helvetica Neue',sans-serif;
+    --blur:blur(35px) saturate(2.1);
+    --shadow:0 16px 40px rgba(0,0,0,.6), inset 0 1px 1px rgba(255,255,255,.1);
   }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  html { scroll-behavior: smooth; background-color: #000; }
-  
-  body {
-    font-family: var(--serif);
-    background: var(--bg);
-    color: var(--ink);
-    min-height: 100vh;
-    line-height: 1.45;
-    padding: 20px;
-    max-width: 680px;
-    margin: 0 auto;
-    padding-top: calc(20px + env(safe-area-inset-top));
-    padding-bottom: calc(32px + env(safe-area-inset-bottom));
-    font-size: 16px;
-    letter-spacing: -0.2px;
-    -webkit-font-smoothing: antialiased;
+  *{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent;}
+  html{scroll-behavior:smooth; background-color:#000;}
+  body{
+    font-family:var(--serif); background:var(--bg); color:var(--ink);
+    min-height:100vh; line-height:1.45; padding:20px; max-width:680px; margin:0 auto;
+    padding-top:calc(20px + env(safe-area-inset-top));
+    padding-bottom:calc(32px + env(safe-area-inset-bottom));
+    font-size:16px; letter-spacing:-.2px; -webkit-font-smoothing:antialiased;
   }
-
-  /* Ultra-modern iOS mesh background illumination */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background: 
-      radial-gradient(ellipse 650px 450px at 85% -10%, rgba(191, 90, 242, 0.22), transparent 70%),
-      radial-gradient(ellipse 550px 450px at -10% 15%, rgba(255, 69, 58, 0.18), transparent 75%),
-      radial-gradient(circle 600px at 50% 85%, rgba(48, 209, 88, 0.14), transparent 70%),
-      #0b0c10;
-  }
-
-  /* ---------- Apple Glass Primitives ---------- */
-  .card, .stat, .tabs, .loc-seg, .plan-day, .fm, .pacebox, .badge, .exdetail, .day-tile, .homebtn, .bubble {
-    background: var(--glass);
-    -webkit-backdrop-filter: var(--blur);
-    backdrop-filter: var(--blur);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow);
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-
-  .card:hover, .stat:hover {
-    border-color: var(--glass-border-glow);
-    background: rgba(255, 255, 255, 0.09);
-  }
-
-  /* ---------- Typography ---------- */
-  .display { font-weight: 700; letter-spacing: -0.8px; }
-  header { margin-bottom: 24px; }
-  .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--sub-txt); opacity: 0.8; }
-  
-  h1 { font-size: 36px; line-height: 1.1; margin-top: 8px; font-weight: 700; letter-spacing: -1.2px; }
-  h1 .display { background: linear-gradient(135deg, #ffffff 40%, rgba(255,255,255,0.7)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  
-  .cfa-grad { background: linear-gradient(135deg, #FFFFFF, var(--purple)) !important; -webkit-background-clip: text !important; background-clip: text !important; color: transparent !important; }
-  .rit-grad { background: linear-gradient(135deg, #FFFFFF, var(--teal)) !important; -webkit-background-clip: text !important; background-clip: text !important; color: transparent !important; }
-  
-  .sub { color: var(--sub-txt); font-size: 14px; margin-top: 8px; font-weight: 400; }
-  .sub b { color: var(--ink); font-weight: 600; }
-
-  /* ---------- Glass Heroes (Dynamic Translucent Layers) ---------- */
-  .gami {
-    background: rgba(255, 255, 255, 0.08);
-    -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur);
-    color: #FFFFFF; border-radius: var(--radius); padding: 20px 18px;
-    display: flex; align-items: center; gap: 16px; margin-bottom: 14px;
-    position: relative; overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.2); 
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-  }
-  
-  .gami::before {
-    content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-    background: radial-gradient(circle 280px at 85% -20%, rgba(255, 214, 10, 0.15), transparent 80%),
-               linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 60%);
-  }
-
-  .cfa-hero { background: rgba(142, 68, 173, 0.12) !important; border-color: rgba(191, 90, 242, 0.3) !important; }
-  .cfa-hero::before { background: radial-gradient(circle 280px at 85% -20%, rgba(191, 90, 242, 0.25), transparent 80%) !important; }
-  
-  .rit-hero { background: rgba(30, 158, 106, 0.12) !important; border-color: rgba(48, 209, 88, 0.3) !important; }
-  .rit-hero::before { background: radial-gradient(circle 280px at 85% -20%, rgba(48, 209, 88, 0.25), transparent 80%) !important; }
-
-  .lvl-wrap { position: relative; width: 66px; height: 66px; flex-shrink: 0; }
-  .lvl-wrap svg { transform: rotate(-90deg); }
-  #app-rituals .lvl-wrap svg { transform: none; }
-  
-  .lvl-num { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .lvl-num b { font-size: 24px; line-height: 1; font-weight: 700; letter-spacing: -0.5px; }
-  .lvl-num span { font-size: 8px; letter-spacing: 1.5px; color: rgba(255, 255, 255, 0.5); font-weight: 600; margin-top: 2px; }
-  
-  .g-mid { flex: 1; min-width: 0; }
-  .g-title { font-size: 18px; font-weight: 600; letter-spacing: -0.2px; }
-  .g-title small { color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-size: 9px; display: block; margin-bottom: 4px; }
-  
-  .xpbar { height: 6px; background: rgba(255, 255, 255, 0.12); border-radius: 99px; margin-top: 10px; overflow: hidden; }
-  .xpfill { height: 100%; background: linear-gradient(90deg, var(--gold), #FFD166); border-radius: 99px; transition: width .6s cubic-bezier(.2,.8,.2,1); }
-  .cfa-fill { background: linear-gradient(90deg, var(--purple), #E0AAFF) !important; }
-  .xptext { font-size: 12px; color: var(--sub-txt); margin-top: 6px; font-weight: 400; }
-  
-  .g-streak { text-align: center; flex-shrink: 0; padding-left: 14px; border-left: 1px solid rgba(255, 255, 255, 0.15); }
-  .g-streak b { font-size: 26px; display: block; font-weight: 700; margin-top: 2px; }
-  .g-streak span { font-size: 8.5px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255, 255, 255, 0.5); font-weight: 600; }
-
-  /* ---------- Motto Bubble ---------- */
-  .motto-row { display: flex; align-items: flex-end; gap: 12px; margin-bottom: 20px; }
-  .motto-row .motto { margin-bottom: 0; flex: 1; }
-  .motto { padding: 14px 16px; font-size: 14.5px; font-weight: 400; line-height: 1.5; color: rgba(255,255,255,0.9); }
-  .bubble { border-radius: 18px; }
-  
-  /* ---------- iOS Horizontal Week Strip ---------- */
-  .week-strip { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin: 0 0 20px; }
-  .day-tile { border-radius: 14px; padding: 10px 4px; text-align: center; background: rgba(255, 255, 255, 0.04); }
-  .day-tile .dname { font-size: 10px; font-weight: 600; letter-spacing: 1px; color: var(--sub-txt); text-transform: uppercase; }
-  .day-tile .dnum { font-size: 16px; font-weight: 600; margin-top: 4px; }
-  .day-tile .dot { width: 5px; height: 5px; border-radius: 50%; margin: 8px auto 0; background: rgba(255,255,255,0.15); }
-  .day-tile.done { background: rgba(48, 209, 88, 0.15); border-color: rgba(48, 209, 88, 0.4); }
-  .day-tile.done .dot { background: var(--teal); }
-  .day-tile.today { border: 1.5px solid var(--sky); background: rgba(10, 132, 255, 0.1); }
-
-  /* ---------- Apple Segmented Controls ---------- */
-  .tabs { display: flex; gap: 2px; margin-bottom: 20px; background: rgba(255, 255, 255, 0.08); padding: 3px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.05); }
-  .tab { flex: 1; padding: 10px 0; border: none; background: transparent; border-radius: 11px; font-weight: 500; font-size: 13.5px; color: var(--sub-txt); cursor: pointer; transition: all .2s; }
-  .tab.active { background: rgba(255, 255, 255, 0.18); color: #FFFFFF; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-  
-  .loc-seg { display: flex; gap: 2px; background: rgba(255, 255, 255, 0.06); padding: 3px; border-radius: 12px; margin: 4px 0 16px; border: none; }
-  .loc-btn { flex: 1; padding: 9px 2px; border: none; background: transparent; border-radius: 9px; font-weight: 500; font-size: 12px; color: var(--sub-txt); cursor: pointer; }
-  .loc-btn.active { background: rgba(255, 255, 255, 0.15); color: #FFFFFF; }
-
-  /* ---------- Adaptive Glass Containers ---------- */
-  .card { border-radius: var(--radius); padding: 20px; margin-bottom: 16px; }
-  .card h2 { font-size: 18px; margin-bottom: 14px; font-weight: 600; letter-spacing: -0.4px; display: flex; align-items: center; justify-content: space-between; }
-  .card h2 .tag { font-size: 10px; background: var(--accent-soft); color: #FF453A; padding: 4px 10px; border-radius: 99px; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 600; border: 1px solid rgba(255,69,58,0.2); }
-  .cfa-tag { background: var(--purple-soft) !important; color: #BF5AF2 !important; border: 1px solid rgba(191,90,242,0.2) !important; }
-  .rit-tag { background: var(--teal-soft) !important; color: #30D158 !important; border: 1px solid rgba(48,209,88,0.2) !important; }
-
-  /* ---------- Modern Data Display Grid ---------- */
-  .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .stat { border-radius: 20px; padding: 16px; }
-  .stat .label { font-size: 10px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: var(--sub-txt); opacity: 0.7; }
-  .stat .value { font-size: 28px; font-weight: 700; margin-top: 6px; letter-spacing: -0.8px; font-variant-numeric: tabular-nums; }
-  .stat .value small { font-size: 13px; color: var(--sub-txt); font-weight: 400; }
-  
-  .stat.hero { grid-column: span 2; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255,255,255,0.15); }
-  .progress-track { height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 99px; margin-top: 14px; overflow: hidden; }
-  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #FF9F0A); border-radius: 99px; }
-  .progress-note { font-size: 12px; color: var(--sub-txt); margin-top: 8px; opacity: 0.8; }
-
-  /* ---------- Metrics & Logs UI ---------- */
-  .fuel-top { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 10px; }
-  .fuel-top .big { font-size: 30px; font-weight: 700; letter-spacing: -0.5px; }
-  .fuel-top .big small { font-size: 13px; color: var(--sub-txt); }
-  .fuel-top .rem { font-size: 12px; font-weight: 600; color: var(--teal); }
-  .fuel-top .rem.over { color: var(--accent); }
-  
-  .bar { height: 8px; background: rgba(255, 255, 255, 0.1); border-radius: 99px; overflow: hidden; }
-  .bar .fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--teal), #34C759); }
-  .bar .fill.over { background: linear-gradient(90deg, var(--accent), #FF453A); }
-  .bar.mini { height: 4px; margin-top: 8px; }
-  .bar.mini .fill { background: rgba(255,255,255,0.3); }
-  
-  .fuel-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
-  .fm { border-radius: 16px; padding: 14px; background: rgba(255,255,255,0.04); }
-  .fm .label { font-size: 9px; font-weight: 600; letter-spacing: 1px; color: var(--sub-txt); text-transform: uppercase; }
-  .fm .value { font-size: 20px; font-weight: 700; margin-top: 4px; }
-  .fm .value.good { color: var(--teal); } 
-  .fm .value.bad { color: var(--accent); }
-
-  /* ---------- Lists & Interaction Items ---------- */
-  ul.exlist { list-style: none; }
-  ul.exlist li { padding: 12px 0; border-bottom: 1px solid var(--hairline); font-size: 15px; }
-  ul.exlist li:last-child { border-bottom: none; }
-  
-  .exhead { display: flex; align-items: center; gap: 14px; }
-  .exhead input[type=checkbox], .cfa-ch input[type=checkbox], .rit-item input[type=checkbox] { 
-    width: 22px; height: 22px; accent-color: var(--sky); flex-shrink: 0; 
-    border-radius: 6px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2);
-  }
-  
-  .exname { flex: 1; cursor: pointer; font-weight: 500; }
-  .exname .rx { color: var(--sub-txt); font-size: 13px; display: block; margin-top: 2px; }
-  .exname .hint { color: var(--accent); font-size: 11px; font-weight: 600; }
-  
-  .exdetail { border-radius: 18px; padding: 16px; margin: 12px 0 4px 0; background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.08); }
-  .exsvg .b { stroke: #FFFFFF; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
-  .exsvg .db { stroke: var(--accent); stroke-width: 5; stroke-linecap: round; }
-  .exsvg .g { stroke: rgba(255,255,255,0.25); stroke-width: 3; stroke-dasharray: 4 4; fill: none; }
-  .exsvg .f { stroke: rgba(255,255,255,0.15); stroke-width: 2; }
-  .exsvg .a { stroke: var(--accent); stroke-width: 2.5; fill: none; }
-  
-  .exdetail .cue { font-size: 13.5px; line-height: 1.5; margin-bottom: 12px; color: rgba(255,255,255,0.8); }
-  .exdetail a { color: var(--sky); font-weight: 500; font-size: 13px; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
-  
-  /* ---------- Premium Cupertino Control Primitives ---------- */
-  .btn { 
-    display: block; width: 100%; padding: 15px; border: none; border-radius: var(--radius-s);
-    background: #FFFFFF; color: #000000; font-weight: 600; font-size: 15px; cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .btn:active { transform: scale(0.98); opacity: 0.9; }
-  .btn:disabled { background: rgba(255, 255, 255, 0.15); color: rgba(255, 255, 255, 0.35); cursor: not-allowed; }
-  .btn.secondary { background: rgba(255, 255, 255, 0.12); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.05); }
-  .btn.small { padding: 10px 14px; font-size: 13px; border-radius: 10px; width: auto; display: inline-block; }
-  
-  .cfa-btn { background: var(--purple) !important; color: #FFFFFF !important; }
-  .xp-chip { background: var(--gold-soft); color: var(--gold); font-size: 10px; font-weight: 600; border-radius: 99px; padding: 2px 8px; margin-left: 6px; border: 1px solid rgba(255,214,10,0.2); }
-  
-  .row { display: flex; gap: 12px; }
-  .row > * { flex: 1; }
-  .row .narrow { flex: 0 0 auto; }
-  
-  input[type=number], input[type=date] { 
-    width: 100%; padding: 14px; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: var(--radius-s); 
-    font-size: 16px; background: rgba(255, 255, 255, 0.05); color: #FFFFFF; 
-    transition: all 0.2s; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
-  }
-  input:focus { outline: none; border-color: var(--sky); background: rgba(255, 255, 255, 0.1); }
-  label.fld { font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--sub-txt); display: block; margin-bottom: 6px; opacity: 0.8; }
-  .field-group { margin-bottom: 14px; }
-  
-  .whoop-note { font-size: 13px; color: #E0F7FA; background: rgba(48, 209, 88, 0.12); border-radius: 14px; padding: 12px; margin-top: 14px; border: 1px solid rgba(48,209,88,0.2); }
-  .whoop-note b { color: var(--teal); }
-
-  /* ---------- Apple Accordions ---------- */
-  .plan-day { border-radius: 18px; margin-bottom: 12px; overflow: hidden; background: rgba(255,255,255,0.03); }
-  .plan-day summary { padding: 15px; font-weight: 600; font-size: 15px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; }
-  .plan-day[open] summary { border-bottom: 1px solid var(--hairline); background: rgba(255,255,255,0.03); }
-  .plan-day summary .chip { font-size: 10px; font-weight: 600; color: var(--accent); }
-  #app-cfa .plan-day summary .chip { color: var(--purple); }
-  .plan-day .body { padding: 12px 15px; }
-
-  /* ---------- Badges Grid ---------- */
-  .badge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .badge { border-radius: 18px; padding: 16px 8px; text-align: center; background: rgba(255,255,255,0.03); }
-  .badge .bicon { font-size: 28px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
-  .badge .bname { font-size: 11px; font-weight: 600; margin-top: 8px; }
-  .badge .bdesc { font-size: 9.5px; color: var(--sub-txt); margin-top: 4px; opacity: 0.7; }
-  .badge.locked { opacity: 0.25; filter: grayscale(1); }
-  .badge.earned { border-color: rgba(255, 214, 10, 0.4); background: rgba(255, 214, 10, 0.08); }
-
-  /* ---------- Activity Grid Matrix (GitHub-style) ---------- */
-  .gridnav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-  .gridnav b { font-size: 14px; font-weight: 600; }
-  .gridnav button { border: 1px solid var(--glass-border); background: transparent; color: #FFF; border-radius: 9px; width: 32px; height: 32px; cursor: pointer; }
-  
-  .mgrid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-top: 10px; }
-  .mgrid .hd { font-size: 9px; text-align: center; color: var(--sub-txt); opacity: 0.6; font-weight: 600; }
-  .mcell { aspect-ratio: 1; border-radius: 6px; background: rgba(255, 255, 255, 0.07); display: flex; align-items: center; justify-content: center; font-size: 10px; color: rgba(255,255,255,0.4); font-weight: 600; }
-  .mcell.tod { outline: 1.5px solid var(--sky); }
-  
-  .pal-teal .mcell.h1 { background: rgba(48, 209, 88, 0.25); color: #FFF; }
-  .pal-teal .mcell.h3 { background: var(--teal); color: #000; }
-  .pal-purple .mcell.h1 { background: rgba(191, 90, 242, 0.2); color: #FFF; }
-  .pal-purple .mcell.h2 { background: rgba(191, 90, 242, 0.5); color: #FFF; }
-  .pal-purple .mcell.h3 { background: var(--purple); color: #FFF; }
-  .pal-gold .mcell.h1 { background: rgba(255, 214, 10, 0.2); color: #FFF; }
-  .pal-gold .mcell.h2 { background: rgba(255, 214, 10, 0.5); color: #FFF; }
-  .pal-gold .mcell.h3 { background: var(--gold); color: #000; }
-  
-  .glegend { display: flex; align-items: center; gap: 6px; justify-content: flex-end; margin-top: 12px; font-size: 9px; color: var(--sub-txt); }
-  .glegend i { width: 12px; height: 12px; border-radius: 4px; background: rgba(255,255,255,0.07); display: inline-block; }
-
-  .pace-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
-  .pacebox { border-radius: 14px; padding: 12px 6px; background: rgba(255,255,255,0.03); }
-  .pacebox span { font-size: 9px; color: var(--sub-txt); text-transform: uppercase; display: block; margin-bottom: 4px; opacity: 0.7; }
-  .pacebox b { font-size: 15px; }
-
-  /* ---------- Rituals View Styling ---------- */
-  .rit-time { display: flex; align-items: center; gap: 10px; margin: 18px 0 6px; font-weight: 600; font-size: 14px; color: var(--sub-txt); }
-  .rit-time::after { content: ''; flex: 1; height: 1px; background: var(--hairline); }
-  .rit-item { display: flex; align-items: flex-start; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--hairline); }
-  .rit-item .ri-body { flex: 1; min-width: 0; }
-  .rit-item .ri-name { font-size: 15px; font-weight: 500; }
-  .rit-item .ri-note { font-size: 12.5px; color: var(--sub-txt); margin-top: 2px; }
-  .ri-time { font-size: 11px; font-weight: 600; color: var(--teal); background: var(--teal-soft); border-radius: 99px; padding: 3px 8px; }
-
-  /* ---------- Navigation Bar Elements ---------- */
-  .apphead { position: relative; margin-bottom: 28px; }
-  .homebtn { position: absolute; top: 0; right: 0; border-radius: 99px; padding: 6px 14px; font-weight: 500; font-size: 13px; color: #FFFFFF; cursor: pointer; background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.1); }
-  
-  /* ---------- iOS App-Launch Style Menu Cards ---------- */
-  .menu-card { 
-    display: flex; align-items: center; gap: 16px; padding: 24px 20px; border-radius: 26px; color: #FFFFFF;
-    margin-bottom: 16px; cursor: pointer; position: relative; overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-  .menu-card:active { transform: scale(0.97); opacity: 0.9; }
-  
-  .mc-workout { background: linear-gradient(135deg, rgba(255, 69, 58, 0.15), rgba(255, 159, 10, 0.05)); }
-  .mc-cfa { background: linear-gradient(135deg, rgba(191, 90, 242, 0.15), rgba(10, 132, 255, 0.05)); }
-  .mc-rituals { background: linear-gradient(135deg, rgba(48, 209, 88, 0.15), rgba(48, 209, 88, 0.02)); }
-  
-  .mc-txt h3 { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
-  .mc-txt p { font-size: 13px; color: var(--sub-txt); margin-top: 4px; }
-  .mc-arrow { margin-left: auto; font-size: 20px; color: rgba(255,255,255,0.4); }
-
-  /* ---------- Toast HUD Alert ---------- */
-  .toast { 
-    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-    background: rgba(30, 30, 30, 0.85); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
-    color: #FFF; padding: 14px 24px; border-radius: 99px; font-size: 14px; font-weight: 500;
-    opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 100;
-    border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 12px 30px rgba(0,0,0,0.5);
-  }
-  .toast.show { opacity: 1; }
-  .hidden { display: none !important; }
-
-  /* ---------- Mascot Vector Settings ---------- */
-  .buddy .ln { stroke: #FFFFFF; stroke-width: 3.5; fill: none; }
-  .buddy .arm { fill: none; stroke-width: 7; }
+  body::before{content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background:
+      radial-gradient(ellipse 650px 450px at 85% -10%, rgba(191,90,242,.22), transparent 70%),
+      radial-gradient(ellipse 550px 450px at -10% 15%, rgba(255,69,58,.18), transparent 75%),
+      radial-gradient(circle 600px at 50% 85%, rgba(48,209,88,.14), transparent 70%),
+      #0b0c10;}
+  /* ---- glass primitives ---- */
+  .card, .stat, .tabs, .loc-seg, .plan-day, .fm, .pacebox, .badge, .exdetail, .day-tile, .homebtn, .bubble{
+    background:var(--glass);
+    -webkit-backdrop-filter:var(--blur); backdrop-filter:var(--blur);
+    border:1px solid var(--glass-border);
+    box-shadow:var(--shadow);
+    transition:all .3s cubic-bezier(.25,1,.5,1);}
+  .card:hover, .stat:hover{border-color:var(--glass-border-glow); background:rgba(255,255,255,.09);}
+  /* ---- typography ---- */
+  .display{font-weight:800; letter-spacing:-.6px;}
+  header{margin-bottom:18px;}
+  .eyebrow{font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--sub-txt); opacity:.85;}
+  h1{font-size:34px; line-height:1.06; margin-top:6px; font-weight:800; letter-spacing:-.7px;}
+  h1 .display{background:linear-gradient(135deg,#FFFFFF 40%,rgba(255,255,255,.7)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .cfa-grad{background:linear-gradient(135deg,#FFFFFF,var(--purple)) !important; -webkit-background-clip:text !important; background-clip:text !important; color:transparent !important;}
+  .rit-grad{background:linear-gradient(135deg,#FFFFFF,var(--teal)) !important; -webkit-background-clip:text !important; background-clip:text !important; color:transparent !important;}
+  .sub{color:var(--sub-txt); font-size:13.5px; margin-top:6px;}
+  .sub b{color:var(--ink); font-weight:600;}
+  /* ---- heroes ---- */
+  .gami{
+    background:rgba(255,255,255,.08);
+    -webkit-backdrop-filter:var(--blur); backdrop-filter:var(--blur);
+    color:#FFFFFF; border-radius:var(--radius); padding:20px 18px;
+    display:flex; align-items:center; gap:16px; margin-bottom:14px;
+    position:relative; overflow:hidden;
+    border:1px solid var(--glass-border); box-shadow:var(--shadow);}
+  .gami::before{content:''; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+    background:radial-gradient(320px 160px at 85% 0%, rgba(255,214,10,.14), transparent 70%),
+               linear-gradient(180deg, rgba(255,255,255,.07), transparent 40%);}
+  .gami::after{content:''; position:absolute; top:0; left:-60%; width:36%; height:100%;
+    background:linear-gradient(115deg,transparent,rgba(255,255,255,.08),transparent);
+    animation:shine 7s ease-in-out infinite;}
+  @keyframes shine{ 55%,100%{left:150%;} }
+  .cfa-hero{background:rgba(142,68,173,.12) !important; border-color:rgba(191,90,242,.3) !important;}
+  .cfa-hero::before{background:radial-gradient(320px 160px at 85% 0%, rgba(191,90,242,.22), transparent 70%), linear-gradient(180deg, rgba(255,255,255,.07), transparent 40%) !important;}
+  .rit-hero{background:rgba(30,158,106,.12) !important; border-color:rgba(48,209,88,.3) !important;}
+  .rit-hero::before{background:radial-gradient(320px 160px at 85% 0%, rgba(48,209,88,.22), transparent 70%), linear-gradient(180deg, rgba(255,255,255,.07), transparent 40%) !important;}
+  .lvl-wrap{position:relative; width:66px; height:66px; flex-shrink:0;}
+  .lvl-wrap svg{transform:rotate(-90deg);}
+  #app-rituals .lvl-wrap svg{transform:none;}
+  .lvl-num{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;}
+  .lvl-num b{font-size:22px; line-height:1; font-weight:800;}
+  .lvl-num span{font-size:7.5px; letter-spacing:1.8px; color:rgba(255,255,255,.5); font-weight:700; margin-top:2px;}
+  .g-mid{flex:1; min-width:0;}
+  .g-title{font-size:17px; font-weight:700; letter-spacing:-.2px;}
+  .g-title small{color:var(--gold); font-weight:700; text-transform:uppercase; letter-spacing:2px; font-size:9px; display:block; margin-bottom:4px;}
+  .xpbar{height:6px; background:rgba(255,255,255,.12); border-radius:99px; margin-top:9px; overflow:hidden;}
+  .xpfill{height:100%; background:linear-gradient(90deg,var(--gold),#FFE569); border-radius:99px; transition:width .6s cubic-bezier(.2,.8,.2,1); position:relative; overflow:hidden;}
+  .xpfill::after{content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent); background-size:200% 100%; animation:shimmer 3.4s linear infinite;}
+  @keyframes shimmer{ to{background-position:-200% 0;} }
+  .cfa-fill{background:linear-gradient(90deg,var(--purple),var(--sky)) !important;}
+  .xptext{font-size:11px; color:rgba(255,255,255,.55); margin-top:6px; font-weight:500;}
+  .g-streak{text-align:center; flex-shrink:0; padding-left:14px; border-left:1px solid rgba(255,255,255,.12);}
+  .g-streak .flame{font-size:22px; line-height:1; display:inline-block; animation:flamepulse 2s ease-in-out infinite;}
+  @keyframes flamepulse{ 50%{transform:scale(1.1);} }
+  .g-streak b{font-size:24px; display:block; font-weight:800; margin-top:2px;}
+  .g-streak span{font-size:8px; letter-spacing:1.4px; text-transform:uppercase; color:rgba(255,255,255,.5); font-weight:700;}
+  /* ---- motto ---- */
+  .motto-row{display:flex; align-items:flex-end; gap:10px; margin-bottom:18px;}
+  .motto-row .motto{margin-bottom:0; flex:1;}
+  .motto{padding:12px 14px; font-size:13.5px; font-weight:500; line-height:1.5; color:rgba(255,255,255,.85);}
+  .bubble{position:relative; border-radius:18px;}
+  .bubble::before{content:''; position:absolute; left:-8px; bottom:16px; border:6px solid transparent; border-right-color:rgba(255,255,255,.12);}
+  /* ---- week strip ---- */
+  .week-strip{display:grid; grid-template-columns:repeat(7,1fr); gap:6px; margin:0 0 16px;}
+  .day-tile{border-radius:14px; padding:9px 4px; text-align:center;}
+  .day-tile .dname{font-size:9px; font-weight:700; letter-spacing:1.2px; color:var(--muted); text-transform:uppercase;}
+  .day-tile .dnum{font-size:15px; font-weight:700; margin-top:3px;}
+  .day-tile .dot{width:6px; height:6px; border-radius:50%; margin:7px auto 0; background:rgba(255,255,255,.18);}
+  .day-tile.done{background:rgba(48,209,88,.15); border-color:rgba(48,209,88,.4);}
+  .day-tile.done .dot{background:var(--teal);}
+  .day-tile.today{border:1.5px solid var(--sky); background:rgba(10,132,255,.1); animation:todaypulse 2.6s ease-in-out infinite;}
+  @keyframes todaypulse{ 50%{box-shadow:0 0 0 5px rgba(10,132,255,.14);} }
+  .day-tile.rest .dname{color:rgba(174,174,178,.4);}
+  /* ---- segmented controls ---- */
+  .tabs{display:flex; gap:3px; margin-bottom:16px; padding:3px; border-radius:14px;}
+  .tab{flex:1; padding:10px 0; border:none; background:transparent; border-radius:11px; font-weight:600; font-size:12.5px; color:var(--muted); cursor:pointer; transition:all .25s cubic-bezier(.2,.8,.2,1);}
+  .tab.active{background:rgba(255,255,255,.18); color:#FFFFFF; box-shadow:0 4px 12px rgba(0,0,0,.3);}
+  .tab:focus-visible{outline:2px solid var(--sky); outline-offset:2px;}
+  .loc-seg{display:flex; gap:3px; padding:3px; border-radius:12px; margin:2px 0 14px;}
+  .loc-btn{flex:1; padding:10px 2px; border:none; background:transparent; border-radius:9px; font-weight:600; font-size:11.5px; color:var(--muted); cursor:pointer; transition:all .25s;}
+  .loc-btn.active{background:rgba(255,255,255,.18); color:#FFFFFF; box-shadow:0 2px 8px rgba(0,0,0,.3);}
+  /* ---- cards ---- */
+  .card{border-radius:var(--radius); padding:18px; margin-bottom:16px; animation:rise .5s cubic-bezier(.2,.8,.2,1) both;}
+  .card:nth-of-type(2){animation-delay:.05s;} .card:nth-of-type(3){animation-delay:.1s;}
+  @keyframes rise{ from{opacity:0; transform:translateY(12px) scale(.99);} }
+  .card h2{font-size:16.5px; margin-bottom:12px; font-weight:700; letter-spacing:-.3px;}
+  .card h2 .tag{font-size:9px; background:var(--accent-soft); color:#FF8A80; padding:4px 9px; border-radius:99px; vertical-align:middle; margin-left:8px; letter-spacing:1px; text-transform:uppercase; font-weight:700;}
+  .cfa-tag{background:var(--purple-soft) !important; color:#D9A6F5 !important;}
+  .rit-tag{background:var(--teal-soft) !important; color:#7CE8A4 !important;}
+  /* ---- stats ---- */
+  .stat-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px;}
+  .stat{border-radius:20px; padding:14px;}
+  .stat .label{font-size:9px; font-weight:700; letter-spacing:1.6px; text-transform:uppercase; color:var(--muted);}
+  .stat .value{font-size:26px; font-weight:800; margin-top:6px; letter-spacing:-.5px; font-variant-numeric:tabular-nums;}
+  .stat .value small{font-size:12px; color:var(--muted); font-weight:500;}
+  .stat.hero{grid-column:span 2; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); color:#FFFFFF;}
+  .stat.hero .label{color:rgba(255,255,255,.5);}
+  .progress-track{height:6px; background:rgba(255,255,255,.12); border-radius:99px; margin-top:12px; overflow:hidden;}
+  .progress-fill{height:100%; background:linear-gradient(90deg,var(--accent),#FF8A65); border-radius:99px; transition:width .6s cubic-bezier(.2,.8,.2,1);}
+  .progress-note{font-size:11.5px; color:rgba(255,255,255,.55); margin-top:8px;}
+  /* ---- fuel ---- */
+  .fuel-top{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:8px;}
+  .fuel-top .big{font-size:28px; font-weight:800; letter-spacing:-.5px; font-variant-numeric:tabular-nums;}
+  .fuel-top .big small{font-size:12px; color:var(--muted); font-weight:500;}
+  .fuel-top .rem{font-size:11.5px; font-weight:700; color:var(--teal);}
+  .fuel-top .rem.over{color:var(--accent);}
+  .bar{height:9px; background:rgba(255,255,255,.1); border-radius:99px; overflow:hidden;}
+  .bar .fill{height:100%; border-radius:99px; background:linear-gradient(90deg,var(--teal),#63E68A); transition:width .5s cubic-bezier(.2,.8,.2,1);}
+  .bar .fill.over{background:linear-gradient(90deg,var(--accent),#FF8A65);}
+  .bar.mini{height:5px; margin-top:8px;}
+  .bar.mini .fill{background:linear-gradient(90deg,rgba(255,255,255,.35),rgba(255,255,255,.55));}
+  .fuel-meta{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px;}
+  .fm{border-radius:16px; padding:12px;}
+  .fm .label{font-size:8.5px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; color:var(--muted);}
+  .fm .value{font-size:18px; font-weight:800; margin-top:4px; font-variant-numeric:tabular-nums;}
+  .fm .value small{font-size:10.5px; color:var(--muted); font-weight:500;}
+  .fm .value.good{color:var(--teal);} .fm .value.bad{color:var(--accent);}
+  .minireset{font-size:11px; color:var(--muted); text-decoration:underline; cursor:pointer; background:none; border:none;}
+  /* ---- exercise lists ---- */
+  ul.exlist{list-style:none;}
+  ul.exlist li{padding:11px 0; border-bottom:1px solid var(--hairline); font-size:14.5px;}
+  ul.exlist li:last-child{border-bottom:none;}
+  .exhead{display:flex; align-items:flex-start; gap:12px;}
+  .exhead input[type=checkbox]{width:20px; height:20px; accent-color:var(--teal); margin-top:2px; flex-shrink:0;}
+  .exname{flex:1; cursor:pointer; font-weight:500;}
+  .exname .rx{color:var(--muted); font-size:12px; display:block; margin-top:1px; font-weight:400;}
+  .exname .hint{color:#FF8A80; font-size:10.5px; font-weight:600;}
+  .exdetail{display:none; border-radius:18px; padding:14px; margin:10px 0 2px 32px;}
+  .exdetail.open{display:block; animation:rise .3s ease both;}
+  .exdetail.noindent{margin-left:0;}
+  .exsvg{width:180px; max-width:100%; display:block; margin:0 auto 10px;}
+  .exsvg .b{stroke:#FFFFFF; stroke-width:3.5; stroke-linecap:round; stroke-linejoin:round; fill:none;}
+  .exsvg .db{stroke:var(--accent); stroke-width:5; stroke-linecap:round;}
+  .exsvg .g{stroke:rgba(255,255,255,.35); stroke-width:3; stroke-dasharray:4 4; fill:none; stroke-linecap:round;}
+  .exsvg .f{stroke:rgba(255,255,255,.18); stroke-width:2;}
+  .exsvg .a{stroke:var(--accent); stroke-width:2.5; fill:none; stroke-linecap:round; stroke-linejoin:round;}
+  .exdetail .cue{font-size:12.5px; line-height:1.55; margin-bottom:10px; color:rgba(255,255,255,.8);}
+  .exdetail .cue b{color:#FF8A80;}
+  .exdetail a{color:var(--sky); font-weight:700; font-size:12px; text-decoration:none;}
+  /* ---- buttons & inputs ---- */
+  .btn{display:block; width:100%; padding:15px; border:none; border-radius:var(--radius-s);
+    background:#FFFFFF; color:#000000; font-weight:600; font-size:15px; cursor:pointer;
+    transition:transform .12s, filter .2s; box-shadow:0 8px 24px rgba(255,255,255,.12);}
+  .btn:active{transform:scale(.97); filter:brightness(.9);}
+  .btn:disabled{background:var(--teal); color:#00160A; box-shadow:0 8px 24px rgba(48,209,88,.25); cursor:default;}
+  .btn.secondary{background:rgba(255,255,255,.12); color:#FFFFFF; box-shadow:none; border:1px solid var(--glass-border);}
+  .btn.small{padding:13px; font-size:13.5px;}
+  .btn:focus-visible{outline:2px solid var(--sky); outline-offset:2px;}
+  .cfa-btn{background:var(--purple) !important; color:#fff !important; box-shadow:0 8px 24px rgba(191,90,242,.35) !important; border:none !important;}
+  .xp-chip{display:inline-block; background:var(--gold-soft); color:var(--gold); font-size:9.5px; font-weight:700; border-radius:99px; padding:3px 9px; margin-left:8px; letter-spacing:.6px; vertical-align:middle;}
+  .row{display:flex; gap:10px;}
+  .row > *{flex:1;}
+  .row .narrow{flex:0 0 112px;}
+  input[type=number], input[type=date]{width:100%; padding:14px; border:1px solid rgba(255,255,255,.15); border-radius:var(--radius-s); font-size:16px; background:rgba(255,255,255,.05); color:#FFFFFF; transition:all .2s; color-scheme:dark;}
+  input:focus{outline:none; border-color:var(--sky); box-shadow:0 0 0 4px rgba(10,132,255,.18);}
+  input::placeholder{color:rgba(255,255,255,.3);}
+  label.fld{font-size:9.5px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:6px;}
+  .field-group{margin-bottom:12px;}
+  .whoop-note{font-size:12px; color:#A5E8BC; background:var(--teal-soft); border:1px solid rgba(48,209,88,.25); border-radius:14px; padding:10px 12px; margin-top:12px; line-height:1.5;}
+  .whoop-note b{color:var(--teal);}
+  /* ---- accordions ---- */
+  .plan-day{border-radius:18px; margin-bottom:10px; overflow:hidden;}
+  .plan-day summary{padding:15px; font-weight:600; font-size:15px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; list-style:none; gap:10px;}
+  .plan-day summary::-webkit-details-marker{display:none;}
+  .plan-day[open] summary{border-bottom:1px solid var(--hairline);}
+  .plan-day summary .chip{font-size:9.5px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:#FF8A80; flex-shrink:0;}
+  #app-cfa .plan-day summary .chip{color:#D9A6F5;}
+  .plan-day .body{padding:6px 15px 13px;}
+  /* ---- badges ---- */
+  .badge-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px;}
+  .badge{border-radius:18px; padding:14px 8px; text-align:center;}
+  .badge .bicon{font-size:25px; line-height:1;}
+  .badge .bname{font-size:10.5px; font-weight:700; margin-top:8px;}
+  .badge .bdesc{font-size:9.5px; color:var(--muted); margin-top:3px; line-height:1.35;}
+  .badge.locked{opacity:.32; filter:grayscale(1);}
+  .badge.earned{border-color:rgba(255,214,10,.4); background:rgba(255,214,10,.08); animation:badgepop .45s cubic-bezier(.2,.8,.2,1) both;}
+  @keyframes badgepop{ from{transform:scale(.85); opacity:0;} }
+  /* ---- chart & lists ---- */
+  .chart-wrap{margin-top:6px;}
+  svg text{font-family:inherit;}
+  .weight-list{margin-top:12px; font-size:13px;}
+  .weight-list .wrow{display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid var(--hairline); color:var(--muted);}
+  .weight-list .wrow:last-child{border-bottom:none;}
+  .weight-list .wrow b{color:var(--ink); font-variant-numeric:tabular-nums;}
+  .delta-down{color:var(--teal); font-weight:700;} .delta-up{color:var(--accent); font-weight:700;}
+  .empty{font-size:13px; color:var(--muted); text-align:center; padding:16px 0;}
+  /* ---- toast & confetti ---- */
+  .toast{position:fixed; bottom:26px; left:50%; transform:translateX(-50%);
+    background:rgba(255,255,255,.1); -webkit-backdrop-filter:blur(30px) saturate(2); backdrop-filter:blur(30px) saturate(2);
+    color:#FFFFFF; padding:12px 20px; border-radius:99px; font-size:13px; font-weight:600;
+    opacity:0; transition:opacity .3s; pointer-events:none; z-index:10;
+    border:1px solid rgba(255,255,255,.2); box-shadow:0 10px 34px rgba(0,0,0,.55); white-space:nowrap;}
+  .toast.show{opacity:1;}
+  .hidden{display:none;}
+  .confetti{position:fixed; top:-12px; border-radius:2px; pointer-events:none; z-index:99; animation:fall linear forwards;}
+  @keyframes fall{ to{ transform:translateY(110vh) rotate(680deg); opacity:.15; } }
+  /* ---- main menu ---- */
+  .menu-card{display:flex; align-items:center; gap:16px; padding:24px 20px; border-radius:26px; color:#FFFFFF;
+    margin-bottom:16px; cursor:pointer; animation:rise .55s cubic-bezier(.2,.8,.2,1) both;
+    position:relative; overflow:hidden;
+    border:1px solid rgba(255,255,255,.2); box-shadow:0 15px 35px rgba(0,0,0,.4);
+    -webkit-backdrop-filter:var(--blur); backdrop-filter:var(--blur);
+    transition:all .25s cubic-bezier(.25,1,.5,1);}
+  .menu-card:active{transform:scale(.975);}
+  .menu-card::before{content:''; position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,0) 45%);}
+  .menu-card::after{content:''; position:absolute; top:0; left:-60%; width:34%; height:100%;
+    background:linear-gradient(115deg,transparent,rgba(255,255,255,.1),transparent); animation:shine 8s ease-in-out infinite;}
+  .mc-workout{background:linear-gradient(135deg, rgba(255,69,58,.15), rgba(255,159,10,.05));}
+  .mc-cfa{background:linear-gradient(135deg, rgba(191,90,242,.15), rgba(10,132,255,.05)); animation-delay:.08s;}
+  .mc-rituals{background:linear-gradient(135deg, rgba(48,209,88,.15), rgba(48,209,88,.02)); animation-delay:.16s;}
+  .mc-txt h3{font-size:21px; letter-spacing:-.3px; font-weight:800;}
+  .mc-txt p{font-size:12px; color:var(--sub-txt); margin-top:4px; font-weight:500;}
+  .mc-arrow{margin-left:auto; font-size:20px; font-weight:600; color:rgba(255,255,255,.6);}
+  .apphead{position:relative;}
+  .homebtn{position:absolute; top:4px; right:0; border-radius:99px;
+    padding:9px 15px; font-weight:600; font-size:11.5px; color:#FFFFFF; cursor:pointer;}
+  /* ---- CFA specifics ---- */
+  .cfa-sum{display:flex; align-items:center; gap:9px; flex:1; min-width:0;}
+  .cfa-sum .nm{flex:1; font-size:13.5px;}
+  .cfa-minibar{width:52px; height:4px; background:rgba(191,90,242,.2); border-radius:99px; overflow:hidden; flex-shrink:0;}
+  .cfa-minibar i{display:block; height:100%; background:linear-gradient(90deg,var(--purple),var(--sky)); border-radius:99px;}
+  .cfa-ch{display:flex; align-items:flex-start; gap:8px; padding:10px 0; border-bottom:1px solid var(--hairline); font-size:13px;}
+  .cfa-ch:last-child{border-bottom:none;}
+  .cfa-ch label{display:flex; gap:10px; flex:1; align-items:flex-start; cursor:pointer; min-width:0;}
+  .cfa-ch input{width:18px; height:18px; accent-color:var(--purple); margin-top:1px; flex-shrink:0;}
+  .cfa-ch .num{color:var(--muted); font-weight:600; flex-shrink:0; font-size:10.5px; margin-top:2px; min-width:16px; font-variant-numeric:tabular-nums;}
+  .cfa-ch.donech span.chnm{color:rgba(174,174,178,.6); text-decoration:line-through; text-decoration-color:rgba(174,174,178,.5);}
+  .revctl{display:flex; align-items:center; gap:4px; flex-shrink:0; margin-left:6px;}
+  .revctl button{width:24px; height:24px; border-radius:9px; border:1px solid var(--glass-border); background:rgba(255,255,255,.08); font-weight:700; color:#D9A6F5; cursor:pointer; font-size:14px; line-height:1; padding:0;}
+  .revctl .rv{font-size:10px; font-weight:700; color:#D9A6F5; background:var(--purple-soft); border-radius:99px; padding:4px 8px; min-width:38px; text-align:center;}
+  /* ---- monthly grids ---- */
+  .gridnav{display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;}
+  .gridnav b{font-size:13.5px; font-weight:700; letter-spacing:-.2px;}
+  .gridnav button{border:1px solid var(--glass-border); background:rgba(255,255,255,.08); border-radius:11px; width:32px; height:32px; font-weight:600; font-size:16px; cursor:pointer; color:var(--muted);}
+  .mgrid{display:grid; grid-template-columns:repeat(7,1fr); gap:4px; margin-top:8px;}
+  .mgrid .hd{font-size:8.5px; text-align:center; color:var(--muted); font-weight:700; padding:2px 0; letter-spacing:.8px;}
+  .mcell{aspect-ratio:1; border-radius:8px; background:rgba(255,255,255,.07); display:flex; align-items:center; justify-content:center; font-size:10px; color:rgba(255,255,255,.4); font-weight:600; font-variant-numeric:tabular-nums;}
+  .mcell.blank{background:transparent;}
+  .mcell.tod{outline:1.5px solid var(--sky); outline-offset:1px;}
+  .pal-teal .mcell.h1{background:rgba(48,209,88,.25); color:#FFF;}
+  .pal-teal .mcell.h3{background:var(--teal); color:#00220E;}
+  .pal-purple .mcell.h1{background:rgba(191,90,242,.2); color:#FFF;}
+  .pal-purple .mcell.h2{background:rgba(191,90,242,.55); color:#FFF;}
+  .pal-purple .mcell.h3{background:var(--purple); color:#FFF;}
+  .pal-gold .mcell.h1{background:rgba(255,214,10,.2); color:#FFF;}
+  .pal-gold .mcell.h2{background:rgba(255,214,10,.5); color:#332B00;}
+  .pal-gold .mcell.h3{background:var(--gold); color:#332B00;}
+  .glegend{display:flex; align-items:center; gap:5px; justify-content:flex-end; margin-top:10px; font-size:8.5px; color:var(--muted); font-weight:600;}
+  .glegend i{width:11px; height:11px; border-radius:4px; background:rgba(255,255,255,.07); display:inline-block;}
+  #view-progress .glegend i.h1{background:rgba(48,209,88,.25);}
+  #view-progress .glegend i.h3{background:var(--teal);}
+  #app-cfa .glegend i.h1{background:rgba(191,90,242,.2);}
+  #app-cfa .glegend i.h2{background:rgba(191,90,242,.55);}
+  #app-cfa .glegend i.h3{background:var(--purple);}
+  #app-rituals .glegend i.h1{background:rgba(255,214,10,.2);}
+  #app-rituals .glegend i.h2{background:rgba(255,214,10,.5);}
+  #app-rituals .glegend i.h3{background:var(--gold);}
+  .pace-row{display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:12px;}
+  .pacebox{border-radius:16px; padding:10px 6px; text-align:center;}
+  .pacebox span{font-size:8px; letter-spacing:1.2px; text-transform:uppercase; color:var(--muted); font-weight:700; display:block; margin-bottom:4px;}
+  .pacebox b{font-size:14px; font-variant-numeric:tabular-nums;}
+  .pace-good{color:var(--teal);} .pace-bad{color:var(--accent);}
+  /* ---- rituals ---- */
+  .rit-time{display:flex; align-items:center; gap:8px; margin:14px 0 4px; font-weight:700; font-size:13.5px;}
+  .rit-time:first-child{margin-top:0;}
+  .rit-time::after{content:''; flex:1; height:1px; background:var(--hairline);}
+  .rit-item{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--hairline); cursor:pointer;}
+  .rit-item:last-child{border-bottom:none;}
+  .rit-item input{width:22px; height:22px; accent-color:var(--sky); margin-top:2px; flex-shrink:0;}
+  .rit-item .ri-body{flex:1; min-width:0;}
+  .rit-item .ri-name{font-size:14.5px; font-weight:600;}
+  .rit-item .ri-note{font-size:11.5px; color:var(--muted); margin-top:2px; line-height:1.45;}
+  .rit-item.ritdone .ri-name{color:rgba(174,174,178,.6); text-decoration:line-through; text-decoration-color:rgba(174,174,178,.5);}
+  .ri-time{font-size:11px; font-weight:600; color:var(--teal); background:var(--teal-soft); border-radius:99px; padding:3px 8px; flex-shrink:0; margin-top:1px; white-space:nowrap;}
+  /* ---- buddies ---- */
+  .buddy{display:block; animation:bob 2.8s ease-in-out infinite; filter:drop-shadow(0 6px 14px rgba(0,0,0,.5));}
+  .buddy.mood-party{animation:bigbounce 1s ease-in-out infinite;}
+  @keyframes bob{ 50%{transform:translateY(-4px);} }
+  @keyframes bigbounce{ 50%{transform:translateY(-8px) rotate(2deg);} }
+  .buddy .arm{fill:none; stroke-width:7; stroke-linecap:round;}
+  .buddy .armWaveL{transform-origin:30px 76px; animation:waveL 1.8s ease-in-out infinite;}
+  .buddy .armWaveR{transform-origin:90px 76px; animation:waveR 1.8s ease-in-out infinite;}
+  @keyframes waveL{ 50%{transform:rotate(14deg);} }
+  @keyframes waveR{ 50%{transform:rotate(-14deg);} }
+  .buddy .blink{transform-origin:60px 57px; animation:blink 5s infinite;}
+  @keyframes blink{ 0%,92%,100%{transform:scaleY(1);} 95%{transform:scaleY(.08);} }
+  .buddy .ln{stroke:#1C1C1E; stroke-width:3.5; fill:none; stroke-linecap:round;}
+  .buddy .zzz{animation:zfloat 3s ease-in-out infinite; opacity:0;}
+  @keyframes zfloat{ 0%{transform:translate(0,0); opacity:0;} 30%{opacity:1;} 100%{transform:translate(9px,-15px); opacity:0;} }
+  .cheer-squad{display:flex; justify-content:center; gap:18px; margin-bottom:14px;}
+  .cheer-squad .buddy:nth-child(2){animation-delay:.2s;}
+  .cheer-squad .buddy:nth-child(3){animation-delay:.4s;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none !important; animation:none !important;} .confetti{display:none;} }
 </style>
 </head>
 <body>
 
 <div id="app-menu">
-  <header style="text-align:center; margin:40px 0 30px">
+  <header style="text-align:center; margin:30px 0 20px">
     <div class="eyebrow">Ashutosh's</div>
-    <h1><span class="display" style="background:linear-gradient(135deg,#FFFFFF 50%, rgba(255,255,255,0.4)); -webkit-background-clip:text; background-clip:text; color:transparent">Personal Space</span></h1>
-    <div class="sub">Select focus container for today</div>
+    <h1><span class="display" style="background:linear-gradient(90deg,#FF453A,#BF5AF2); -webkit-background-clip:text; background-clip:text; color:transparent">Personal App</span></h1>
+    <div class="sub">Pick your grind for today</div>
   </header>
-  
   <div class="menu-card mc-workout" onclick="showApp('workout')" role="button" tabindex="0">
     <div id="menuBuddyW"></div>
-    <div class="mc-txt"><h3>💪 Abs Protocol</h3><p>Workouts · fuel vectors · streaks · 80 → 72 kg</p></div>
+    <div class="mc-txt"><h3>💪 Abs Protocol</h3><p>Workouts · fuel · streaks · 80 → 72 kg</p></div>
     <div class="mc-arrow">→</div>
   </div>
-  
   <div class="menu-card mc-cfa" onclick="showApp('cfa')" role="button" tabindex="0">
     <div id="menuBuddyC"></div>
-    <div class="mc-txt"><h3>📚 CFA Tracker</h3><p>Level 1 · Feb 2027 Mission · 300h Core Matrix</p></div>
+    <div class="mc-txt"><h3>📚 CFA Tracker</h3><p>Level 1 · Feb 2027 · 300-hour mission</p></div>
     <div class="mc-arrow">→</div>
   </div>
-  
   <div class="menu-card mc-rituals" onclick="showApp('rituals')" role="button" tabindex="0">
     <div id="menuBuddyR"></div>
-    <div class="mc-txt"><h3>🌿 Daily Rituals</h3><p>Supplements · architecture · bio-baselines</p></div>
+    <div class="mc-txt"><h3>🌿 Daily Rituals</h3><p>Supplements · skincare · non-negotiables</p></div>
     <div class="mc-arrow">→</div>
   </div>
 </div>
 
-<!-- Rest of structural app markup remains perfectly compatible and interactive under the new engine styling guidelines -->
 <div id="app-workout" class="hidden">
+
 <header class="apphead">
   <button class="homebtn" onclick="showApp('menu')">⌂ Menu</button>
   <div class="eyebrow">Athlete · Ashutosh</div>
   <h1><span class="display">Abs Protocol</span></h1>
-  <div class="sub">Mission: <b>80 → 72 kg</b> · 5 Days Track Matrix</div>
+  <div class="sub">Mission: <b>80 → 72 kg</b> · 5 days a week · home · tap any exercise for form</div>
 </header>
 
 <div class="gami">
   <div class="lvl-wrap">
     <svg width="64" height="64" viewBox="0 0 64 64">
-      <circle cx="32" cy="32" r="27" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6"/>
+      <circle cx="32" cy="32" r="27" fill="none" stroke="#2A3948" stroke-width="6"/>
       <circle id="lvlRing" cx="32" cy="32" r="27" fill="none" stroke="#FFD60A" stroke-width="6" stroke-linecap="round" stroke-dasharray="169.6" stroke-dashoffset="169.6"/>
     </svg>
-    <div class="lvl-num"><b id="lvlNum">1</b><span>LVL</span></div>
+    <div class="lvl-num"><b id="lvlNum">1</b><span>LEVEL</span></div>
   </div>
   <div class="g-mid">
-    <div class="g-title"><small id="lvlLabel">Rank Cluster</small><span id="lvlTitle">Rookie</span></div>
+    <div class="g-title"><small id="lvlLabel">Rank</small><span id="lvlTitle">Rookie</span></div>
     <div class="xpbar"><div class="xpfill" id="xpFill" style="width:0%"></div></div>
-    <div class="xptext" id="xpText">0 XP Matrix</div>
+    <div class="xptext" id="xpText">0 XP</div>
   </div>
   <div class="g-streak">
     <div class="flame" id="flameIcon">🔥</div>
     <b id="streakNum">0</b>
-    <span>streak</span>
+    <span>day streak</span>
   </div>
 </div>
-
 <div class="motto-row">
   <div id="buddy" aria-hidden="true"></div>
-  <div class="motto bubble" id="motto">Initialize daily metric targets.</div>
+  <div class="motto bubble" id="motto">Show up today, Ashutosh. That's the whole job.</div>
 </div>
 
-<div class="week-strip" id="weekStrip" aria-label="Training track weekly strip"></div>
+<div class="week-strip" id="weekStrip" aria-label="This week's training days"></div>
 
 <div class="tabs" role="tablist">
   <button class="tab active" id="tab-today" onclick="switchTab('today')">Today</button>
@@ -441,45 +409,1436 @@
 
 <section id="view-today">
   <div class="card" id="todayCard"></div>
+
   <div class="card">
-    <h2>Fuel Matrix <span class="tag">+10 XP</span></h2>
+    <h2>Fuel · calories in <span class="tag">+10 XP / day</span></h2>
     <div id="fuelBody"></div>
-    <div class="row" style="margin-top:14px">
+    <div class="row" style="margin-top:12px">
       <div class="field-group" style="margin-bottom:0">
-        <label class="fld" for="mealIn">Log Intake (kcal)</label>
-        <input type="number" id="mealIn" placeholder="e.g. 520">
+        <label class="fld" for="mealIn">Add meal / snack (kcal)</label>
+        <input type="number" id="mealIn" min="1" max="3000" placeholder="e.g. 450">
       </div>
       <div class="narrow" style="align-self:flex-end">
         <button class="btn small" onclick="addMeal()">+ Add</button>
       </div>
     </div>
+    <div class="row" style="margin-top:10px; align-items:flex-end">
+      <div class="field-group" style="margin-bottom:0">
+        <label class="fld" for="targetIn">Daily target (kcal)</label>
+        <input type="number" id="targetIn" min="1000" max="4000" step="10">
+      </div>
+      <div class="narrow">
+        <button class="btn small secondary" onclick="saveTarget()">Set target</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Whoop check-in <span class="tag">+10 XP</span></h2>
+    <p style="font-size:12px; color:var(--muted); margin:-4px 0 10px">Copy today's numbers from your Whoop app — takes 30 seconds.</p>
+    <div class="row">
+      <div class="field-group">
+        <label class="fld" for="recIn">Recovery %</label>
+        <input type="number" id="recIn" min="0" max="100" placeholder="e.g. 72">
+      </div>
+      <div class="field-group">
+        <label class="fld" for="sleepIn">Sleep (hrs)</label>
+        <input type="number" id="sleepIn" min="0" max="14" step="0.1" placeholder="e.g. 7.5">
+      </div>
+    </div>
+    <div class="row">
+      <div class="field-group">
+        <label class="fld" for="burnIn">Calories burned</label>
+        <input type="number" id="burnIn" min="0" max="8000" placeholder="e.g. 2450">
+      </div>
+      <div class="field-group">
+        <label class="fld" for="stepsIn">Steps</label>
+        <input type="number" id="stepsIn" min="0" max="60000" placeholder="e.g. 8200">
+      </div>
+    </div>
+    <button class="btn secondary" onclick="saveWhoop()">Save check-in</button>
+    <div class="whoop-note" id="whoopAdvice">Log today's recovery and you'll get guidance on how hard to push.</div>
   </div>
 </section>
 
-<!-- Remaining original configuration variables and data pipelines left active -->
-<section id="view-plan" class="hidden"><div class="card"><h2>The 5-Day Split Engine</h2><div id="planList"></div></div></section>
-<section id="view-progress" class="hidden"><div class="stat-grid" style="margin-bottom:12px;"><div class="stat hero"><div class="label">Goal Tracking Architecture</div><div class="value" id="heroWeight">— <small>kg</small></div><div class="progress-track"><div class="progress-fill" id="goalFill"></div></div></div></div></section>
-<section id="view-awards" class="hidden"><div class="badge-grid" id="badgeGrid"></div></section>
-</div>
+<section id="view-plan" class="hidden">
+  <div class="card">
+    <h2>The 5-Day Split</h2>
+    <div id="planList"></div>
+    <div class="whoop-note" style="margin-top:12px">
+      <b>Autoregulate with Whoop:</b> Green recovery — add a set. Yellow — as written. Red — swap for a 45-min walk + stretching, sleep 7.5h+. Weekend: rest + one long walk, 8–10k steps every day.
+    </div>
+  </div>
+</section>
 
-<div id="toast" class="toast" role="status"></div>
+<section id="view-progress" class="hidden">
+  <div class="stat-grid" style="margin-bottom:12px">
+    <div class="stat hero">
+      <div class="label">Goal progress</div>
+      <div class="value" id="heroWeight">— <small>kg</small></div>
+      <div class="progress-track"><div class="progress-fill" id="goalFill" style="width:0%"></div></div>
+      <div class="progress-note" id="goalNote">Log your first weigh-in below.</div>
+    </div>
+    <div class="stat"><div class="label">Lost so far</div><div class="value" id="statLost">0.0 <small>kg</small></div></div>
+    <div class="stat"><div class="label">To go</div><div class="value" id="statToGo">8.0 <small>kg</small></div></div>
+    <div class="stat"><div class="label">Workouts this week</div><div class="value" id="statWeek">0 <small>/ 5</small></div></div>
+    <div class="stat"><div class="label">Total workouts</div><div class="value" id="statTotal">0</div></div>
+    <div class="stat"><div class="label">Avg intake · 7d</div><div class="value" id="statIntake">— <small>kcal</small></div></div>
+    <div class="stat"><div class="label">Avg deficit · 7d</div><div class="value" id="statDeficit">— <small>kcal</small></div></div>
+  </div>
+
+  <div class="card">
+    <h2>Monthly consistency <span class="tag">GitHub style</span></h2>
+    <div class="gridnav"><button onclick="wGridNav(-1)" aria-label="Previous month">‹</button><b id="wGridLabel"></b><button onclick="wGridNav(1)" aria-label="Next month">›</button></div>
+    <div id="wGrid" class="pal-teal"></div>
+    <div class="glegend"><span>rest</span><i class="h0"></i><i class="h1"></i><i class="h3"></i><span>done</span></div>
+    <div class="pace-row">
+      <div class="pacebox"><span>Needed pace</span><b>5 /wk</b></div>
+      <div class="pacebox"><span>Current · 4wk</span><b id="wPaceCur">0 /wk</b></div>
+      <div class="pacebox"><span>Verdict</span><b id="wPaceStatus">—</b></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Log weight <span class="tag">+15 XP</span></h2>
+    <div class="row">
+      <div class="field-group"><label class="fld" for="wDate">Date</label><input type="date" id="wDate"></div>
+      <div class="field-group"><label class="fld" for="wKg">Weight (kg)</label><input type="number" id="wKg" step="0.1" min="40" max="150" placeholder="79.4"></div>
+    </div>
+    <button class="btn" onclick="saveWeight()">Save weigh-in</button>
+    <p style="font-size:12px; color:var(--muted); margin-top:8px">Tip: weigh in 2–3× a week, same time of day, before breakfast.</p>
+  </div>
+
+  <div class="card">
+    <h2>Trend</h2>
+    <div class="chart-wrap" id="chart"><div class="empty">No weigh-ins yet — your trend line will appear here.</div></div>
+    <div class="weight-list" id="weightList"></div>
+  </div>
+</section>
+
+<section id="view-awards" class="hidden">
+  <div class="stat-grid" style="margin-bottom:12px">
+    <div class="stat"><div class="label">Longest streak</div><div class="value" id="recStreak">0 <small>days</small></div></div>
+    <div class="stat"><div class="label">Best week</div><div class="value" id="recWeek">0 <small>/ 5</small></div></div>
+    <div class="stat"><div class="label">Lowest weight</div><div class="value" id="recLow">— <small>kg</small></div></div>
+    <div class="stat"><div class="label">Total XP</div><div class="value" id="recXP">0</div></div>
+  </div>
+  <div class="card">
+    <div class="cheer-squad" id="cheerSquad" aria-hidden="true"></div>
+    <h2>Badges <span class="tag" id="badgeCount">0 / 12</span></h2>
+    <div class="badge-grid" id="badgeGrid"></div>
+  </div>
+  <div class="card">
+    <h2>How XP works</h2>
+    <p style="font-size:13px; color:var(--muted); line-height:1.6">Complete a workout <b style="color:var(--ink)">+50</b> · Weigh-in <b style="color:var(--ink)">+15</b> · Whoop check-in <b style="color:var(--ink)">+10</b> · Log your food for the day <b style="color:var(--ink)">+10</b> · Hit 8,000+ steps <b style="color:var(--ink)">+10</b> · Full 5/5 week <b style="color:var(--ink)">+100 bonus</b>.</p>
+  </div>
+</section>
+
+</div><!-- /app-workout -->
+
+<div id="app-cfa" class="hidden">
+  <header class="apphead">
+    <button class="homebtn" onclick="showApp('menu')">⌂ Menu</button>
+    <div class="eyebrow" style="color:var(--purple)">Candidate · Ashutosh</div>
+    <h1><span class="display cfa-grad">CFA Level 1</span></h1>
+    <div class="sub">Exam: <b>22–28 Feb 2027</b> · 2027 curriculum · 300-hour mission</div>
+  </header>
+
+  <div class="gami cfa-hero">
+    <div class="g-mid">
+      <div class="g-title"><small style="color:#D9A6F5">Countdown</small><span id="cfaDays">— days to exam</span></div>
+      <div class="xpbar"><div class="xpfill cfa-fill" id="cfaHoursFill" style="width:0%"></div></div>
+      <div class="xptext" id="cfaHoursText">0 / 300 hours logged</div>
+      <div class="xptext" id="cfaReg" style="margin-top:3px; color:#FFD60A; font-weight:800"></div>
+    </div>
+    <div class="g-streak">
+      <div class="flame" id="cfaFlame">📚</div>
+      <b id="cfaStreak">0</b>
+      <span>day streak</span>
+    </div>
+  </div>
+  <div class="motto-row">
+    <div id="cfaBuddy" aria-hidden="true"></div>
+    <div class="motto bubble cfa-bubble" id="cfaMotto">One reading at a time, Ashutosh.</div>
+  </div>
+
+  <div class="stat-grid" style="margin-bottom:12px">
+    <div class="stat"><div class="label">Readiness</div><div class="value" id="cfaReady">0<small>%</small></div></div>
+    <div class="stat"><div class="label">This week</div><div class="value" id="cfaWeekHrs">0 <small>hrs</small></div></div>
+    <div class="stat"><div class="label">Total revisions</div><div class="value" id="cfaRevTotal">0 <small>🔁</small></div></div>
+    <div class="stat"><div class="label">Weeks left</div><div class="value" id="cfaWeeks">—</div></div>
+  </div>
+
+  <div class="card">
+    <h2>Log study time <span class="tag cfa-tag">Every hour counts</span></h2>
+    <div class="row">
+      <div class="field-group"><label class="fld" for="cfaDate">Date</label><input type="date" id="cfaDate"></div>
+      <div class="field-group"><label class="fld" for="cfaHrs">Hours</label><input type="number" id="cfaHrs" min="0.25" max="16" step="0.25" placeholder="e.g. 1.5"></div>
+    </div>
+    <button class="btn cfa-btn" onclick="cfaLogHours()">Log hours</button>
+  </div>
+
+  <div class="card">
+    <h2>Monthly consistency <span class="tag cfa-tag">Don't break the chain</span></h2>
+    <div class="gridnav"><button onclick="cGridNav(-1)" aria-label="Previous month">‹</button><b id="cGridLabel"></b><button onclick="cGridNav(1)" aria-label="Next month">›</button></div>
+    <div id="cGrid" class="pal-purple"></div>
+    <div class="glegend"><span>0h</span><i class="h0"></i><i class="h1"></i><i class="h2"></i><i class="h3"></i><span>2h+</span></div>
+    <div class="pace-row">
+      <div class="pacebox"><span>Needed pace</span><b id="cPaceNeed">—</b></div>
+      <div class="pacebox"><span>Current · 4wk</span><b id="cPaceCur">0</b></div>
+      <div class="pacebox"><span>Verdict</span><b id="cPaceStatus">—</b></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Topics &amp; Chapters <span class="tag cfa-tag" id="cfaChCount">0 / 102</span></h2>
+    <div id="cfaTopics"></div>
+    <p style="font-size:12px; color:var(--muted); margin-top:10px">Official 2027 curriculum learning modules (Feb 2027 window onward). Tick a chapter when you've finished the reading + its practice questions. Readiness weights each topic by its exam weight.</p>
+  </div>
+
+</div><!-- /app-cfa -->
+
+<div id="app-rituals" class="hidden">
+  <header class="apphead">
+    <button class="homebtn" onclick="showApp('menu')">⌂ Menu</button>
+    <div class="eyebrow" style="color:var(--teal)">Discipline · Ashutosh</div>
+    <h1><span class="display rit-grad">Daily Rituals</span></h1>
+    <div class="sub"><b>8 non-negotiables</b> · supplements &amp; skincare · every single day</div>
+  </header>
+
+  <div class="gami rit-hero">
+    <div class="lvl-wrap">
+      <svg width="66" height="66" viewBox="0 0 66 66">
+        <circle cx="33" cy="33" r="27" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="6"/>
+        <circle id="ritRing" cx="33" cy="33" r="27" fill="none" stroke="#30D158" stroke-width="6" stroke-linecap="round" stroke-dasharray="169.6" stroke-dashoffset="169.6" transform="rotate(-90 33 33)"/>
+      </svg>
+      <div class="lvl-num"><b id="ritCount">0</b><span>OF 8</span></div>
+    </div>
+    <div class="g-mid">
+      <div class="g-title"><small style="color:#8FE8B0">Today</small><span id="ritTitle">The standard is the standard</span></div>
+      <div class="xptext" id="ritSub">Tick every ritual to keep the perfect-day chain alive.</div>
+    </div>
+    <div class="g-streak">
+      <div class="flame" id="ritFlame">🌿</div>
+      <b id="ritStreak">0</b>
+      <span>perfect days</span>
+    </div>
+  </div>
+  <div class="motto-row">
+    <div id="ritBuddy" aria-hidden="true"></div>
+    <div class="motto bubble" id="ritMotto">Small things done daily, Ashutosh. That is the whole secret.</div>
+  </div>
+
+  <div class="card" id="ritListCard">
+    <h2>Today's checklist <span class="tag rit-tag">Non-negotiable</span></h2>
+    <div id="ritList"></div>
+  </div>
+
+  <div class="card">
+    <h2>Monthly consistency <span class="tag rit-tag">Perfect-day chain</span></h2>
+    <div class="gridnav"><button onclick="rGridNav(-1)" aria-label="Previous month">‹</button><b id="rGridLabel"></b><button onclick="rGridNav(1)" aria-label="Next month">›</button></div>
+    <div id="rGrid" class="pal-gold"></div>
+    <div class="glegend"><span>0</span><i class="h0"></i><i class="h1"></i><i class="h2"></i><i class="h3"></i><span>all 8</span></div>
+  </div>
+</div><!-- /app-rituals -->
+
+<div class="toast" id="toast" role="status"></div>
 
 <script>
-// Dynamic view manager initialization tracking standard scripts
-function showApp(appId) {
-  ['menu', 'workout', 'cfa', 'rituals'].forEach(id => {
-    const el = document.getElementById('app-' + id);
-    if(el) el.classList.toggle('hidden', id !== appId);
+/* Standalone storage: data lives in this phone's localStorage */
+if(!window.storage){
+  window.storage = {
+    async get(key){ const v = localStorage.getItem('abs-'+key); return v==null ? null : {key, value:v}; },
+    async set(key, value){ localStorage.setItem('abs-'+key, value); return {key, value}; },
+    async delete(key){ localStorage.removeItem('abs-'+key); return {key, deleted:true}; },
+    async list(prefix){ const keys=[]; for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i); if(k.startsWith('abs-'+(prefix||''))) keys.push(k.slice(4));} return {keys}; }
+  };
+}
+/* Offline support */
+if('serviceWorker' in navigator){ window.addEventListener('load', ()=>navigator.serviceWorker.register('./sw.js').catch(()=>{})); }
+</script>
+<script>
+const KEY = 'lean-dashboard-v1';
+const NAME = 'Ashutosh';
+const START_W = 80, TARGET_W = 72;
+const STEP_GOAL = 8000;
+const DEFAULT_CAL_TARGET = 1850;
+
+/* ---------- form illustration library ---------- */
+
+const FLOOR = '<line class="f" x1="10" y1="96" x2="150" y2="96"/>';
+const REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function art(inner, floor=true){
+  return '<svg class="exsvg" viewBox="0 0 160 110" role="img" aria-label="Animated exercise form demo">' + (floor?FLOOR:'') + inner + '</svg>';
+}
+/* SMIL animation builders: every moving part loops between pose A and pose B */
+function an(attr,v1,v2,dur){ return '<animate attributeName="'+attr+'" values="'+v1+';'+v2+';'+v1+'" dur="'+dur+'s" repeatCount="indefinite"/>'; }
+function AP(cls,a,b,dur){
+  if(REDUCED||a===b) return '<path class="'+cls+'" d="'+a+'"/>';
+  return '<path class="'+cls+'" d="'+a+'">'+an('d',a,b,dur)+'</path>';
+}
+function SP(cls,d){ return '<path class="'+cls+'" d="'+d+'"/>'; }
+function AC(x1,y1,x2,y2,dur){
+  if(REDUCED||(x1===x2&&y1===y2)) return '<circle class="b" cx="'+x1+'" cy="'+y1+'" r="7"/>';
+  return '<circle class="b" cx="'+x1+'" cy="'+y1+'" r="7">'+an('cx',x1,x2,dur)+an('cy',y1,y2,dur)+'</circle>';
+}
+function AL(cls,A,B,dur,w){
+  let s='<line class="'+cls+'"'+(w?' stroke-width="'+w+'"':'')+' x1="'+A[0]+'" y1="'+A[1]+'" x2="'+A[2]+'" y2="'+A[3]+'"';
+  if(REDUCED||A.join()===B.join()) return s+'/>';
+  return s+'>'+an('x1',A[0],B[0],dur)+an('y1',A[1],B[1],dur)+an('x2',A[2],B[2],dur)+an('y2',A[3],B[3],dur)+'</line>';
+}
+const D=1.8, DH=2.6, DF=1.1; /* normal, hold, fast */
+const ART = {
+  pushup: art(
+    AC(28,62,26,48,D) + AP('b','M40,68 L88,74 L136,92','M40,56 L88,66 L136,90',D) +
+    AP('b','M42,70 L36,84 L48,95','M42,58 L44,78 L48,95',D)),
+  press: art(
+    '<circle class="b" cx="80" cy="26" r="7"/>' + SP('b','M80,33 L80,64 M80,64 L68,94 M80,64 L92,94') +
+    AP('b','M80,40 L64,38 L60,28','M80,40 L70,26 L66,12',D) +
+    AP('b','M80,40 L96,38 L100,28','M80,40 L90,26 L94,12',D) +
+    AL('db',[52,28,68,28],[58,12,74,12],D) + AL('db',[92,28,108,28],[86,12,102,12],D)),
+  floorpress: art(
+    '<circle class="b" cx="30" cy="86" r="7"/>' + SP('b','M42,88 L86,88 M86,88 L104,68 L116,94') +
+    AP('b','M46,88 L58,90 L58,66','M46,88 L52,72 L56,52',D) +
+    AL('db',[50,66,66,66],[48,52,64,52],D)),
+  dip: art(
+    '<rect x="98" y="68" width="40" height="28" fill="none" class="f" stroke-width="3"/>' +
+    AC(82,40,82,52,D) + AP('b','M82,47 L82,70','M82,59 L82,80',D) +
+    AP('b','M82,70 L36,92','M82,80 L38,94',D) +
+    AP('b','M82,52 L98,64 L100,68','M82,64 L98,80 L100,68',D)),
+  plank: art(
+    '<circle class="b" cx="30" cy="68" r="7"/>' +
+    AP('b','M42,72 L88,72 L134,88','M42,72 L88,70 L134,88',DH) +
+    SP('b','M42,72 L40,92 L58,92')),
+  deadbug: art(
+    '<circle class="b" cx="38" cy="86" r="7"/>' + SP('b','M48,88 L82,88') + SP('b','M82,88 L96,70 L108,80') +
+    AP('b','M52,86 L52,58','M52,86 L38,64',D) +
+    AP('b','M82,88 L126,78','M82,88 L104,72',D)),
+  goblet: art(
+    AC(70,36,76,18,D) +
+    AP('b','M70,43 L62,66 L88,70 L86,95','M76,25 L74,52 L82,72 L84,95',D) +
+    AP('b','M68,50 L84,52','M75,32 L86,36',D) +
+    AL('db',[90,44,90,60],[90,28,90,44],D)),
+  lunge: art(
+    AC(80,22,80,30,D) + AP('b','M80,29 L80,52','M80,37 L80,60',D) +
+    AP('b','M80,52 L98,68 L98,95','M80,60 L102,72 L100,95',D) +
+    AP('b','M80,52 L64,74 L46,86','M80,60 L60,82 L40,90',D) +
+    AP('b','M80,38 L74,58','M80,44 L74,66',D) +
+    AL('db',[68,58,84,60],[68,66,84,68],D)),
+  rdl: art(
+    AC(32,50,78,20,D) + AP('b','M44,54 L86,58','M78,27 L82,56',D) +
+    AP('b','M86,58 L90,76 L88,95','M82,56 L86,76 L86,95',D) +
+    AP('b','M50,56 L54,80','M78,34 L80,62',D) +
+    AL('db',[46,80,62,80],[72,62,88,62],D)),
+  bridge: art(
+    '<circle class="b" cx="34" cy="88" r="7"/>' +
+    AP('b','M46,90 L86,88 L102,64 L104,95','M46,90 L86,66 L102,64 L104,95',D)),
+  calf: art(
+    AC(80,26,80,18,D) +
+    AP('b','M80,33 L80,62 M80,62 L74,90 M80,62 L86,90','M80,25 L80,56 M80,56 L74,84 M80,56 L86,84',D) +
+    AP('b','M74,90 L82,95 M86,90 L94,95','M74,84 L80,95 M86,84 L92,95',D)),
+  burpee: art(
+    AC(80,20,80,52,DF) + AP('b','M80,27 L80,54','M80,59 L80,74',DF) +
+    AP('b','M80,32 L64,16','M80,62 L64,82',DF) + AP('b','M80,32 L96,16','M80,62 L96,82',DF) +
+    AP('b','M80,54 L66,84','M80,74 L66,92',DF) + AP('b','M80,54 L94,84','M80,74 L94,92',DF)),
+  legraise: art(
+    '<circle class="b" cx="36" cy="88" r="7"/>' + SP('b','M48,90 L84,90') + SP('b','M54,92 L76,92') +
+    AP('b','M84,90 L92,46','M84,90 L126,80',D)),
+  bicycle: art(
+    '<circle class="b" cx="40" cy="72" r="7"/>' + SP('b','M50,78 L84,88') +
+    AP('b','M84,88 L66,68 L52,76','M84,88 L106,74 L124,70',D) +
+    AP('b','M84,88 L128,76','M84,88 L98,74',D) +
+    AP('b','M48,76 L60,66','M48,76 L54,72',D)),
+  twist: art(
+    '<circle class="b" cx="56" cy="50" r="7"/>' + SP('b','M78,88 L60,58') + SP('b','M78,88 L104,68 L120,60') +
+    AP('b','M64,62 L90,66','M64,62 L72,80',D) +
+    AL('db',[90,60,94,74],[68,80,82,84],D)),
+  sideplank: art(
+    '<circle class="b" cx="42" cy="62" r="7"/>' + SP('b','M34,94 L54,94 M46,94 L48,72') + SP('b','M52,70 L54,48') +
+    AP('b','M48,70 L90,80 L132,88','M48,70 L90,75 L132,88',DH)),
+  row: art(
+    '<circle class="b" cx="32" cy="46" r="7"/>' + SP('b','M44,50 L86,56') + SP('b','M86,56 L92,76 L90,95') +
+    AP('b','M50,52 L54,68 L52,80','M50,52 L64,58 L58,70',D) +
+    AL('db',[44,80,60,80],[50,70,66,70],D)),
+  onerow: art(
+    '<rect x="14" y="72" width="26" height="24" fill="none" class="f" stroke-width="3"/>' +
+    '<circle class="b" cx="34" cy="44" r="7"/>' + SP('b','M46,48 L88,54') + SP('b','M88,54 L94,76 L92,95') + SP('b','M48,50 L28,72') +
+    AP('b','M54,52 L58,68 L56,82','M54,52 L68,60 L62,74',D) +
+    AL('db',[48,82,64,82],[54,74,70,74],D)),
+  band: art(
+    '<circle class="b" cx="80" cy="22" r="7"/>' + SP('b','M80,29 L80,60 M80,60 L70,92 M80,60 L90,92') +
+    AP('b','M80,36 L62,34','M80,36 L48,34',D) +
+    AP('b','M80,36 L98,34','M80,36 L112,34',D) +
+    AL('db',[62,34,98,34],[48,34,112,34],D,3)),
+  curl: art(
+    '<circle class="b" cx="74" cy="22" r="7"/>' + SP('b','M74,29 L74,60 M74,60 L66,92 M74,60 L82,92') + SP('b','M74,36 L78,52') +
+    AP('b','M78,52 L82,72','M78,52 L94,40',D) +
+    AL('db',[76,72,90,72],[88,38,102,38],D)),
+  hollow: art(
+    AC(26,66,26,64,DH) + SP('b','M34,74 L16,62') +
+    AP('b','M34,74 Q80,96 132,66','M34,68 Q80,96 132,72',DH)),
+  taps: art(
+    '<circle class="b" cx="30" cy="66" r="7"/>' + SP('b','M42,70 L88,72 L134,88') + SP('b','M44,72 L44,94') +
+    AP('b','M48,70 L48,92','M48,70 L60,62',D)),
+  thruster: art(
+    AC(70,36,76,16,D) +
+    AP('b','M70,43 L62,66 L88,70 L86,95','M76,23 L74,50 L82,72 L84,95',D) +
+    AP('b','M70,48 L78,46','M76,28 L80,12',D) +
+    AL('db',[66,46,82,46],[72,10,88,10],D)),
+  renegade: art(
+    '<circle class="b" cx="28" cy="60" r="7"/>' + SP('b','M40,66 L86,72 L134,90') + SP('b','M42,68 L40,94') +
+    '<line class="db" x1="32" y1="94" x2="48" y2="94"/>' +
+    AP('b','M46,66 L44,82','M46,66 L58,54',D) +
+    AL('db',[46,88,60,90],[52,48,66,52],D)),
+  swing: art(
+    AC(36,50,54,32,1.3) +
+    AP('b','M48,54 L88,58','M64,38 L88,58',1.3) +
+    SP('b','M88,58 L92,76 L90,95') +
+    AP('b','M52,56 L76,82','M66,42 L102,48',1.3) +
+    AL('db',[70,84,84,80],[100,46,114,44],1.3)),
+  carry: art(
+    AC(78,20,78,22,DF) + SP('b','M78,27 L78,58') +
+    AP('b','M78,58 L64,92','M78,58 L92,92',DF) +
+    AP('b','M78,58 L92,92','M78,58 L64,92',DF) +
+    SP('b','M78,34 L66,64 M78,34 L90,64') +
+    '<line class="db" x1="58" y1="66" x2="72" y2="64"/><line class="db" x1="84" y1="64" x2="98" y2="66"/>'),
+  bench: art('<rect x="28" y="80" width="88" height="7" fill="none" class="f" stroke-width="3"/>'+
+    '<circle class="b" cx="32" cy="72" r="7"/>'+SP('b','M44,76 L86,76 M86,76 L104,84 L106,95')+
+    AP('b','M48,76 L58,78 L58,54','M48,76 L54,60 L56,40',D)+AL('db',[44,54,72,54],[42,40,70,40],D)),
+  bbsquat: art(AC(70,36,76,18,D)+
+    AP('b','M70,43 L62,66 L88,70 L86,95','M76,25 L74,52 L82,72 L84,95',D)+
+    AP('b','M70,48 L86,46','M76,30 L92,28',D)+AL('db',[50,46,94,46],[56,28,100,28],D)),
+  latpull: art('<line class="f" x1="44" y1="12" x2="116" y2="12"/>'+
+    '<circle class="b" cx="80" cy="30" r="7"/>'+SP('b','M80,37 L80,70 M80,70 L104,74 L104,95')+
+    AP('b','M80,44 L62,24 M80,44 L98,24','M80,44 L60,46 M80,44 L100,46',D)+
+    AL('db',[54,22,106,22],[54,48,106,48],D,3)),
+  pushdown: art('<path class="f" d="M92,10 L92,38"/>'+
+    '<circle class="b" cx="74" cy="22" r="7"/>'+SP('b','M74,29 L74,60 M74,60 L66,92 M74,60 L82,92')+SP('b','M74,36 L78,52')+
+    AP('b','M78,52 L92,42','M78,52 L92,68',D)+AL('db',[86,42,100,42],[84,68,100,68],D)),
+  latraise: art(AC(78,22,78,22,D)+SP('b','M78,29 L78,60 M78,60 L70,92 M78,60 L86,92')+
+    AP('b','M78,36 L70,62 M78,36 L86,62','M78,36 L50,40 M78,36 L106,40',D)+
+    AL('db',[64,64,76,62],[42,42,54,40],D)+AL('db',[80,62,92,64],[102,40,114,42],D)),
+  hang: art('<line class="f" x1="40" y1="14" x2="120" y2="14"/>'+
+    '<circle class="b" cx="80" cy="28" r="7"/>'+SP('b','M80,35 L80,62')+SP('b','M80,38 L64,16 M80,38 L96,16')+
+    AP('b','M80,62 L86,78 L82,94','M80,62 L102,64 L96,80',D)),
+  airsquat: art(AC(70,36,76,18,D)+
+    AP('b','M70,43 L62,66 L88,70 L86,95','M76,25 L74,52 L82,72 L84,95',D)+
+    AP('b','M68,50 L88,46','M75,32 L92,30',D)),
+  wallsit: art('<line class="f" x1="44" y1="20" x2="44" y2="96"/>'+
+    '<circle class="b" cx="54" cy="38" r="7"/>'+
+    AP('b','M54,45 L52,70 L80,70 L80,95','M54,44 L52,69 L80,69 L80,95',DH)+
+    SP('b','M53,52 L66,62')),
+  superman: art(AC(24,76,24,72,DH)+
+    AP('b','M32,82 Q80,92 128,82','M30,78 Q80,92 130,78',DH)+
+    AP('b','M36,80 L18,68','M34,76 L16,62',DH))
+};
+
+/* ---------- plan with form cues ---------- */
+const LOCS = [['home','\ud83e\uddf0 Home \u00b7 DBs'],['gym','\ud83c\udfcb\ufe0f Gym'],['body','\ud83e\udd38 No equipment']];
+const PLAN = [
+ {short:'Push', name:'Day 1 \u00b7 Upper Push + Core', m:{
+  home:[
+   {n:'Push-ups', rx:'4 \u00d7 12\u201315', art:'pushup', cue:'<b>Rigid line</b> from head to heels \u2014 squeeze glutes and abs. Elbows at 45\u00b0, chest touches first. Too hard? Elevate hands on a table.', q:'push up proper form'},
+   {n:'DB shoulder press', rx:'3 \u00d7 10\u201312', art:'press', cue:'<b>Ribs down</b>, core tight \u2014 no lower-back arch. Full lockout, lower to ear level.', q:'dumbbell shoulder press standing form'},
+   {n:'DB floor press', rx:'3 \u00d7 10\u201312', art:'floorpress', cue:'Upper arms rest on the floor. <b>Pause 1 second</b> at the bottom, press straight up.', q:'dumbbell floor press form'},
+   {n:'Chair dips', rx:'3 \u00d7 10\u201312', art:'dip', cue:'Shoulders <b>down away from ears</b>. Elbows to 90\u00b0, hips close to the chair.', q:'bench dips proper form'},
+   {n:'Plank', rx:'3 \u00d7 45 sec', art:'plank', cue:'<b>Squeeze glutes, tuck ribs</b> \u2014 one straight line, no sagging hips.', q:'plank correct form'},
+   {n:'Dead bugs', rx:'3 \u00d7 12 / side', art:'deadbug', cue:'<b>Lower back pressed flat</b> into the mat the entire time.', q:'dead bug exercise form'}],
+  gym:[
+   {n:'Barbell bench press', rx:'4 \u00d7 8\u201310', art:'bench', cue:'Feet planted, slight arch, bar to <b>mid-chest</b>. Wrists stacked over elbows. Always use safeties or a spotter.', q:'barbell bench press form'},
+   {n:'Incline DB press', rx:'3 \u00d7 10', art:'bench', cue:'Bench at 30\u201345\u00b0. Press up and <b>slightly back</b>; lower until you feel the chest stretch.', q:'incline dumbbell press form'},
+   {n:'Seated DB shoulder press', rx:'3 \u00d7 10', art:'press', cue:'Back against the pad, <b>ribs down</b>, press to full lockout.', q:'seated dumbbell shoulder press form'},
+   {n:'Lateral raises', rx:'3 \u00d7 15', art:'latraise', cue:'<b>Lead with the elbows</b>, stop at shoulder height, tiny bend in the arms \u2014 light weight, zero swing.', q:'dumbbell lateral raise form'},
+   {n:'Triceps rope pushdown', rx:'3 \u00d7 12', art:'pushdown', cue:'<b>Elbows pinned</b> to your sides; split the rope at the bottom, slow return.', q:'triceps rope pushdown form'},
+   {n:'Hanging knee raises', rx:'3 \u00d7 12', art:'hang', cue:'<b>No swinging</b> \u2014 curl the pelvis up, knees to chest, lower slow.', q:'hanging knee raise form'}],
+  body:[
+   {n:'Push-ups', rx:'4 \u00d7 15\u201320', art:'pushup', cue:'<b>Rigid line</b> head to heels, elbows 45\u00b0. Last set to near-failure.', q:'push up proper form'},
+   {n:'Pike push-ups', rx:'3 \u00d7 8\u201310', art:'pushup', cue:'Hips high in a V, head drops <b>between your hands</b> \u2014 this is your shoulder press.', q:'pike push up form'},
+   {n:'Decline push-ups (feet on chair)', rx:'3 \u00d7 10\u201312', art:'pushup', cue:'Feet elevated shifts load to <b>upper chest</b>. Keep the plank rigid.', q:'decline push up form'},
+   {n:'Chair dips', rx:'3 \u00d7 12\u201315', art:'dip', cue:'Shoulders <b>down away from ears</b>, elbows to 90\u00b0.', q:'bench dips proper form'},
+   {n:'Plank', rx:'3 \u00d7 60 sec', art:'plank', cue:'<b>Glutes squeezed, ribs tucked</b> \u2014 quality over time.', q:'plank correct form'},
+   {n:'Dead bugs', rx:'3 \u00d7 12 / side', art:'deadbug', cue:'<b>Lower back glued</b> to the floor throughout.', q:'dead bug exercise form'}]}},
+ {short:'Legs', name:'Day 2 \u00b7 Lower Body', m:{
+  home:[
+   {n:'Goblet squats', rx:'4 \u00d7 12', art:'goblet', cue:'<b>Sit between your heels</b>, chest proud, heels down. Depth goal: elbows touch knees.', q:'goblet squat form'},
+   {n:'Reverse lunges', rx:'3 \u00d7 10 / leg', art:'lunge', cue:'Rear knee drops <b>straight down</b>; front knee over ankle.', q:'reverse lunge form'},
+   {n:'DB Romanian deadlifts', rx:'3 \u00d7 12', art:'rdl', cue:'<b>Hips back</b>, back flat, soft knees. Stop at the hamstring stretch.', q:'dumbbell romanian deadlift form'},
+   {n:'Glute bridges', rx:'3 \u00d7 15', art:'bridge', cue:'Drive through <b>heels</b>, squeeze glutes 1 second at the top.', q:'glute bridge form'},
+   {n:'Calf raises', rx:'3 \u00d7 20', art:'calf', cue:'Full stretch at bottom, <b>1-second pause</b> on your toes.', q:'standing calf raise form'}],
+  gym:[
+   {n:'Barbell back squat', rx:'4 \u00d7 8', art:'bbsquat', cue:'Bar on traps, brace hard, <b>sit between the heels</b> to at least parallel. Rack safeties set.', q:'barbell back squat form'},
+   {n:'Leg press', rx:'3 \u00d7 12', art:'bbsquat', cue:'Feet mid-platform, lower <b>under control</b> to 90\u00b0 \u2014 never lock the knees hard.', q:'leg press machine form'},
+   {n:'Barbell Romanian deadlift', rx:'3 \u00d7 10', art:'rdl', cue:'<b>Hips back</b>, bar drags the thighs, back flat like a table.', q:'barbell romanian deadlift form'},
+   {n:'Walking lunges', rx:'3 \u00d7 10 / leg', art:'lunge', cue:'Long steps, torso tall, rear knee <b>kisses the floor</b>.', q:'walking lunges form'},
+   {n:'Standing calf raises', rx:'3 \u00d7 15 heavy', art:'calf', cue:'Full stretch, <b>pause at the top</b> \u2014 slow both ways.', q:'standing calf raise machine form'}],
+  body:[
+   {n:'Air squats', rx:'4 \u00d7 20', art:'airsquat', cue:'Arms reach forward as counterbalance, <b>heels down</b>, full depth.', q:'air squat form'},
+   {n:'Reverse lunges', rx:'3 \u00d7 12 / leg', art:'lunge', cue:'Rear knee <b>straight down</b>, torso tall, no wobble.', q:'reverse lunge form'},
+   {n:'Single-leg glute bridges', rx:'3 \u00d7 12 / leg', art:'bridge', cue:'One foot down, <b>hips stay level</b> \u2014 squeeze hard at the top.', q:'single leg glute bridge form'},
+   {n:'Wall sit', rx:'3 \u00d7 45 sec', art:'wallsit', cue:'Thighs <b>parallel to the floor</b>, back flat on the wall, breathe.', q:'wall sit form'},
+   {n:'Calf raises', rx:'3 \u00d7 25', art:'calf', cue:'Slow tempo; do them <b>single-leg</b> if 25 feels easy.', q:'single leg calf raise form'}]}},
+ {short:'HIIT', name:'Day 3 \u00b7 HIIT + Abs', m:{
+  home:[
+   {n:'HIIT intervals \u2014 burpees, mountain climbers, jump squats, high knees', rx:'20 min \u00b7 40s work / 20s rest', art:'burpee', cue:'Pace to <b>finish every round</b>. Quality over speed.', q:'burpee proper form'},
+   {n:'Lying leg raises', rx:'3 \u00d7 15', art:'legraise', cue:'<b>Lower slowly</b> \u2014 stop before the lower back arches.', q:'lying leg raise form'},
+   {n:'Bicycle crunches', rx:'3 \u00d7 20', art:'bicycle', cue:'Rotate <b>ribs to knee</b>, slow and controlled.', q:'bicycle crunch form'},
+   {n:'Russian twists', rx:'3 \u00d7 20', art:'twist', cue:'Lean back 45\u00b0, <b>rotate from the torso</b>.', q:'russian twist form'},
+   {n:'Side plank', rx:'3 \u00d7 30 sec / side', art:'sideplank', cue:'Shoulder <b>stacked over elbow</b>, hips high.', q:'side plank form'}],
+  gym:[
+   {n:'Rower / assault bike intervals', rx:'20 min \u00b7 40s hard / 20s easy', art:'burpee', cue:'Hard means <b>8\u20139 out of 10</b> effort; easy means keep moving.', q:'rowing machine technique'},
+   {n:'Hanging knee raises', rx:'3 \u00d7 12\u201315', art:'hang', cue:'<b>Curl the pelvis</b>, no swing \u2014 the gym-only ab king.', q:'hanging knee raise form'},
+   {n:'Cable crunches', rx:'3 \u00d7 15', art:'legraise', cue:'Kneel, <b>crunch the ribs to the hips</b> \u2014 hips stay still.', q:'cable crunch form'},
+   {n:'Plate Russian twists', rx:'3 \u00d7 20', art:'twist', cue:'Light plate, chest tall, <b>full rotation</b> each side.', q:'russian twist with plate form'},
+   {n:'Side plank', rx:'3 \u00d7 40 sec / side', art:'sideplank', cue:'One straight line \u2014 <b>no hip dip</b>.', q:'side plank form'}],
+  body:[
+   {n:'HIIT intervals \u2014 burpees, mountain climbers, jump squats, high knees', rx:'20 min \u00b7 40s work / 20s rest', art:'burpee', cue:'No equipment needed \u2014 just <b>finish every round</b>.', q:'bodyweight hiit workout form'},
+   {n:'Lying leg raises', rx:'3 \u00d7 15', art:'legraise', cue:'<b>Slow negatives</b>; hands under hips if needed.', q:'lying leg raise form'},
+   {n:'Bicycle crunches', rx:'3 \u00d7 20', art:'bicycle', cue:'<b>Ribs to knee</b>, never pull the neck.', q:'bicycle crunch form'},
+   {n:'Russian twists', rx:'3 \u00d7 24', art:'twist', cue:'No weight \u2014 so <b>slower and fuller</b> rotation.', q:'russian twist form'},
+   {n:'Side plank', rx:'3 \u00d7 30 sec / side', art:'sideplank', cue:'Hips <b>lifted and stacked</b> the whole time.', q:'side plank form'}]}},
+ {short:'Pull', name:'Day 4 \u00b7 Upper Pull + Core', m:{
+  home:[
+   {n:'Bent-over DB rows', rx:'4 \u00d7 10', art:'row', cue:'Hinge 45\u00b0, <b>back flat</b>. Pull to hip pockets, squeeze the blades.', q:'bent over dumbbell row form'},
+   {n:'Single-arm DB rows', rx:'3 \u00d7 12 / side', art:'onerow', cue:'<b>Row with the back</b> \u2014 elbow to hip, no torso twist.', q:'single arm dumbbell row form'},
+   {n:'Band pull-aparts', rx:'3 \u00d7 15', art:'band', cue:'Straight arms, band <b>to the chest</b>, pinch 1 second.', q:'band pull apart form'},
+   {n:'DB curls', rx:'3 \u00d7 12', art:'curl', cue:'<b>Elbows pinned</b>; lower for a slow 2-count.', q:'dumbbell bicep curl form'},
+   {n:'Hollow hold', rx:'3 \u00d7 30 sec', art:'hollow', cue:'<b>Lower back glued</b> to the floor, arms and legs long.', q:'hollow body hold form'},
+   {n:'Plank shoulder taps', rx:'3 \u00d7 20', art:'taps', cue:'Feet wide, <b>hips dead still</b>.', q:'plank shoulder taps form'}],
+  gym:[
+   {n:'Lat pulldown (or pull-ups)', rx:'4 \u00d7 10', art:'latpull', cue:'Chest up, pull the bar <b>to the collarbone</b>, elbows down and back \u2014 no leaning way back.', q:'lat pulldown form'},
+   {n:'Seated cable row', rx:'3 \u00d7 12', art:'row', cue:'<b>Squeeze the blades</b>, pull to the belly, no torso rocking.', q:'seated cable row form'},
+   {n:'Single-arm DB row', rx:'3 \u00d7 12 / side', art:'onerow', cue:'Knee on the bench, <b>elbow to hip</b>, flat back.', q:'single arm dumbbell row form'},
+   {n:'Face pulls', rx:'3 \u00d7 15', art:'band', cue:'Rope to the <b>forehead</b>, elbows high \u2014 shoulder health gold.', q:'cable face pull form'},
+   {n:'EZ-bar curls', rx:'3 \u00d7 12', art:'curl', cue:'<b>Elbows pinned</b>, no swing, slow negatives.', q:'ez bar curl form'},
+   {n:'Hanging knee raises', rx:'3 \u00d7 12', art:'hang', cue:'Controlled \u2014 <b>pelvis curls up</b>, no momentum.', q:'hanging knee raise form'}],
+  body:[
+   {n:'Towel rows (door or table edge)', rx:'4 \u00d7 10\u201312', art:'row', cue:'Loop a towel around a door handle, lean back, <b>pull chest to hands</b> \u2014 the steeper you lean, the harder.', q:'towel door row exercise'},
+   {n:'Superman holds', rx:'3 \u00d7 30 sec', art:'superman', cue:'Lift chest and thighs, <b>squeeze the whole back side</b>.', q:'superman hold exercise form'},
+   {n:'Reverse snow angels', rx:'3 \u00d7 12', art:'superman', cue:'Chest lifted, sweep the arms <b>slowly</b> \u2014 rear delts on fire.', q:'reverse snow angel exercise'},
+   {n:'Towel iso curls', rx:'3 \u00d7 20 sec / side', art:'curl', cue:'Stand on a towel, curl against it and <b>hold the tension</b>.', q:'towel isometric bicep curl'},
+   {n:'Hollow hold', rx:'3 \u00d7 30 sec', art:'hollow', cue:'<b>Lower back glued</b> to the floor.', q:'hollow body hold form'},
+   {n:'Plank shoulder taps', rx:'3 \u00d7 24', art:'taps', cue:'<b>Zero hip rock</b> \u2014 widen the feet if needed.', q:'plank shoulder taps form'}]}},
+ {short:'Full', name:'Day 5 \u00b7 Full Body Conditioning', m:{
+  home:[
+   {n:'DB thrusters', rx:'3 \u00d7 12', art:'thruster', cue:'Full squat, then <b>drive legs and press in one motion</b>.', q:'dumbbell thruster form'},
+   {n:'Push-up + renegade row', rx:'3 \u00d7 8', art:'renegade', cue:'Feet wide, <b>hips square</b> \u2014 row without twisting.', q:'renegade row form'},
+   {n:'Alternating lunges', rx:'3 \u00d7 12', art:'lunge', cue:'Rear knee <b>straight down</b>, torso tall.', q:'alternating lunges form'},
+   {n:'DB swings', rx:'3 \u00d7 15', art:'swing', cue:'A <b>hip snap</b> \u2014 not a squat, not an arm lift.', q:'dumbbell swing form'},
+   {n:'Farmer carry', rx:'3 \u00d7 40 sec', art:'carry', cue:'Stand <b>tall</b>, grip tight, walk slow.', q:'farmer carry form'},
+   {n:'EMOM finisher \u2014 6 burpees + 10 squats / min', rx:'10 min', art:'burpee', cue:'Start each minute <b>on the minute</b>.', q:'burpee proper form'}],
+  gym:[
+   {n:'Barbell deadlift', rx:'3 \u00d7 8', art:'rdl', cue:'Bar over mid-foot, <b>flat back, push the floor away</b>. Master light before heavy.', q:'barbell deadlift form'},
+   {n:'DB thrusters', rx:'3 \u00d7 12', art:'thruster', cue:'Legs power the press \u2014 <b>one fluid motion</b>.', q:'dumbbell thruster form'},
+   {n:'Heavy farmer carry', rx:'3 \u00d7 40 sec', art:'carry', cue:'Heaviest DBs you can hold with <b>perfect posture</b>.', q:'farmer carry form'},
+   {n:'Kettlebell swings', rx:'3 \u00d7 15', art:'swing', cue:'<b>Hip snap</b> throws the bell to chest height \u2014 arms just steer.', q:'kettlebell swing form'},
+   {n:'Rower finisher', rx:'10 min \u00b7 EMOM 12 hard pulls', art:'burpee', cue:'12 strong strokes on the minute, <b>rest what is left</b>.', q:'rowing machine sprint technique'}],
+  body:[
+   {n:'Burpees', rx:'3 \u00d7 12', art:'burpee', cue:'Chest to floor, <b>full jump</b> at the top \u2014 own the standard.', q:'burpee proper form'},
+   {n:'Jump squats', rx:'3 \u00d7 15', art:'airsquat', cue:'Land <b>soft and quiet</b>, sink straight into the next rep.', q:'jump squat form'},
+   {n:'Alternating lunges', rx:'3 \u00d7 14', art:'lunge', cue:'Torso tall, knee <b>straight down</b>.', q:'alternating lunges form'},
+   {n:'Bear crawl', rx:'3 \u00d7 30 sec', art:'plank', cue:'Knees hover <b>one inch off the floor</b>, back flat, small steps.', q:'bear crawl exercise form'},
+   {n:'Mountain climbers', rx:'3 \u00d7 30 / side', art:'plank', cue:'Hips <b>low and level</b> \u2014 no bouncing.', q:'mountain climbers form'},
+   {n:'EMOM finisher \u2014 8 push-ups + 12 squats / min', rx:'10 min', art:'burpee', cue:'On the minute, <b>every minute</b>.', q:'bodyweight emom workout'}]}}
+];
+
+/* ---------- gamification config ---------- */
+const RANKS = [
+  {xp:0,t:'Rookie'},{xp:150,t:'Grinder'},{xp:400,t:'Machine'},{xp:750,t:'Operator'},
+  {xp:1200,t:'Beast Mode'},{xp:1800,t:'Titan'},{xp:2600,t:'Unbreakable'},{xp:3600,t:'Shredded'}
+];
+const BADGES = [
+  {id:'first',  icon:'🥇', name:'First Blood',   desc:'Complete your first workout',       test:s=>s.total>=1},
+  {id:'ten',    icon:'💪', name:'Ten Club',      desc:'10 total workouts',                 test:s=>s.total>=10},
+  {id:'twenty', icon:'⚙️', name:'The Grind',     desc:'25 total workouts',                 test:s=>s.total>=25},
+  {id:'fifty',  icon:'🏆', name:'Fifty Legend',  desc:'50 total workouts',                 test:s=>s.total>=50},
+  {id:'full',   icon:'🎯', name:'Full House',    desc:'5 / 5 workouts in one week',        test:s=>s.bestWeek>=5},
+  {id:'hot',    icon:'🔥', name:'Hot Streak',    desc:'5-day training streak',             test:s=>s.longestStreak>=5},
+  {id:'unstop', icon:'⚡', name:'Unstoppable',   desc:'15-day training streak',            test:s=>s.longestStreak>=15},
+  {id:'fuel',   icon:'🥗', name:'Clean Fuel',    desc:'7 days at or under calorie target', test:s=>s.fuelDaysUnder>=7},
+  {id:'steps',  icon:'👟', name:'Step Machine',  desc:'10 days of 8,000+ steps',           test:s=>s.stepDays>=10},
+  {id:'kilo',   icon:'📉', name:'First Kilo',    desc:'Lose your first 1 kg',              test:s=>s.lost>=1},
+  {id:'half',   icon:'🧗', name:'Halfway There', desc:'Lose 4 kg — half the mission',      test:s=>s.lost>=4},
+  {id:'m72',    icon:'👑', name:'Mission 72',    desc:'Hit 72 kg. Abs unlocked.',          test:s=>s.lowest!==null && s.lowest<=TARGET_W}
+];
+const MOTTOS = {
+  fresh:[
+    'Show up today, NAME. That\u2019s the whole job.',
+    'Day one or one day, NAME. You already chose.',
+    'The best project you\u2019ll ever manage is this one, NAME.'],
+  rolling:[
+    'STREAK days straight, NAME. Momentum is your superpower now.',
+    'Don\u2019t break the chain, NAME — STREAK days and counting.',
+    'Discipline compounds like interest, NAME. STREAK days deep.'],
+  close:[
+    'TOGO kg between you and the goal, NAME. Downhill from here.',
+    'You can see the finish line, NAME — TOGO kg to go.'],
+  rest:[
+    'Rest day, NAME. Recovery is where the muscle gets built.',
+    'Walk, stretch, sleep, NAME. Monday you attack again.']
+};
+
+let state = { weights: [], logs: {}, settings: {calTarget: DEFAULT_CAL_TARGET} };
+
+function todayISO(d = new Date()){
+  const off = d.getTimezoneOffset();
+  return new Date(d.getTime() - off*60000).toISOString().slice(0,10);
+}
+function mondayOf(d){
+  const dt = new Date(d); const day = (dt.getDay()+6)%7;
+  dt.setDate(dt.getDate()-day); return dt;
+}
+
+async function load(){
+  try{
+    const r = await window.storage.get(KEY);
+    if(r && r.value) state = JSON.parse(r.value);
+  }catch(e){ /* first run */ }
+  state.settings = state.settings || {calTarget: DEFAULT_CAL_TARGET};
+  if(!state.settings.calTarget) state.settings.calTarget = DEFAULT_CAL_TARGET;
+  render();
+}
+async function persist(){
+  try{ await window.storage.set(KEY, JSON.stringify(state)); }
+  catch(e){ toast('Could not save — try again'); }
+}
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2400);
+}
+function switchTab(name){
+  ['today','plan','progress','awards'].forEach(n=>{
+    document.getElementById('view-'+n).classList.toggle('hidden', n!==name);
+    document.getElementById('tab-'+n).classList.toggle('active', n===name);
   });
 }
-function switchTab(tabId) {
-  ['today', 'plan', 'progress', 'awards'].forEach(id => {
-    const el = document.getElementById('view-' + id);
-    const btn = document.getElementById('tab-' + id);
-    if(el) el.classList.toggle('hidden', id !== tabId);
-    if(btn) btn.classList.toggle('active', id === tabId);
-  });
+function toggleDetail(id){ document.getElementById(id).classList.toggle('open'); }
+function detailHTML(e, id, noindent){
+  const link = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(e.q);
+  return '<div class="exdetail' + (noindent?' noindent':'') + '" id="' + id + '">' +
+    (ART[e.art]||'') + '<p class="cue">' + e.cue + '</p>' +
+    '<a href="' + link + '" target="_blank" rel="noopener">▶ Watch video demo</a></div>';
 }
+
+/* ---------- gamification engine ---------- */
+function isTrainingDay(d){ const dow=(d.getDay()+6)%7; return dow<=4; }
+function computeGame(){
+  const target = state.settings.calTarget || DEFAULT_CAL_TARGET;
+  let total=0; const weekMap={};
+  let intakeDays=0, fuelDaysUnder=0, stepDays=0, checkins=0;
+  for(const [iso,log] of Object.entries(state.logs)){
+    if(log.done){
+      total++;
+      const wk = todayISO(mondayOf(new Date(iso)));
+      weekMap[wk]=(weekMap[wk]||0)+1;
+    }
+    if(log.intake>0){ intakeDays++; if(log.intake<=target) fuelDaysUnder++; }
+    if(log.steps>=STEP_GOAL) stepDays++;
+    if(log.recovery!=null||log.sleep!=null||log.calsBurned!=null||log.steps!=null) checkins++;
+  }
+  const bestWeek = Math.max(0, ...Object.values(weekMap), 0);
+  const fullWeeks = Object.values(weekMap).filter(c=>c>=5).length;
+  let streak=0; const d=new Date(); let first=true;
+  while(true){
+    if(isTrainingDay(d)){
+      const done = state.logs[todayISO(d)] && state.logs[todayISO(d)].done;
+      if(done) streak++;
+      else if(first){ /* today pending */ }
+      else break;
+    }
+    first=false;
+    d.setDate(d.getDate()-1);
+    if(streak>400) break;
+  }
+  let longest=0;
+  const doneDates = Object.keys(state.logs).filter(k=>state.logs[k].done).sort();
+  if(doneDates.length){
+    let run=0; const cur=new Date(doneDates[0]); const end=new Date(todayISO());
+    while(cur<=end){
+      if(isTrainingDay(cur)){
+        if(state.logs[todayISO(cur)] && state.logs[todayISO(cur)].done){ run++; longest=Math.max(longest,run); }
+        else run=0;
+      }
+      cur.setDate(cur.getDate()+1);
+    }
+    longest=Math.max(longest,streak);
+  }
+  const weighins = state.weights.length;
+  const latest = state.weights.length ? state.weights[state.weights.length-1].kg : null;
+  const lowest = state.weights.length ? Math.min(...state.weights.map(w=>w.kg)) : null;
+  const lost = latest ? Math.max(0, START_W - latest) : 0;
+  const toGo = latest ? Math.max(0, latest - TARGET_W) : START_W - TARGET_W;
+  // 7-day nutrition averages
+  let sumIn=0, nIn=0, sumDef=0, nDef=0;
+  for(let i=0;i<7;i++){
+    const dd=new Date(); dd.setDate(dd.getDate()-i);
+    const log=state.logs[todayISO(dd)];
+    if(log && log.intake>0){ sumIn+=log.intake; nIn++;
+      if(log.calsBurned>0){ sumDef+=(log.calsBurned-log.intake); nDef++; } }
+  }
+  const avgIntake = nIn? Math.round(sumIn/nIn) : null;
+  const avgDeficit = nDef? Math.round(sumDef/nDef) : null;
+  const xp = total*50 + weighins*15 + checkins*10 + intakeDays*10 + stepDays*10 + fullWeeks*100;
+  let rank=0;
+  for(let i=0;i<RANKS.length;i++){ if(xp>=RANKS[i].xp) rank=i; }
+  const next = RANKS[rank+1] || null;
+  return {total,bestWeek,streak,longestStreak:longest,xp,rank,next,lost,toGo,latest,lowest,
+          fuelDaysUnder,stepDays,avgIntake,avgDeficit,target};
+}
+
+function renderGami(g){
+  document.getElementById('lvlNum').textContent = g.rank+1;
+  document.getElementById('lvlTitle').textContent = RANKS[g.rank].t;
+  document.getElementById('lvlLabel').textContent = 'Rank ' + (g.rank+1) + ' of ' + RANKS.length;
+  const floor = RANKS[g.rank].xp;
+  const ceil = g.next ? g.next.xp : RANKS[RANKS.length-1].xp;
+  const pct = g.next ? Math.min(100,((g.xp-floor)/(ceil-floor))*100) : 100;
+  document.getElementById('xpFill').style.width = pct+'%';
+  document.getElementById('xpText').textContent = g.next
+    ? g.xp + ' XP · ' + (ceil-g.xp) + ' XP to ' + g.next.t
+    : g.xp + ' XP · MAX RANK. Absolute unit.';
+  document.getElementById('lvlRing').style.strokeDashoffset = (169.6*(1-pct/100)).toFixed(1);
+  document.getElementById('streakNum').textContent = g.streak;
+  document.getElementById('flameIcon').textContent = g.streak>=10?'🔥🔥':(g.streak>0?'🔥':'💤');
+  const now=new Date(); const dow=(now.getDay()+6)%7;
+  let pool;
+  if(dow>4) pool=MOTTOS.rest;
+  else if(g.toGo<=2 && g.latest) pool=MOTTOS.close;
+  else if(g.streak>=2) pool=MOTTOS.rolling;
+  else pool=MOTTOS.fresh;
+  const pick = pool[ now.getDate() % pool.length ];
+  document.getElementById('motto').textContent = pick
+    .replaceAll('NAME', NAME).replaceAll('STREAK', g.streak).replaceAll('TOGO', g.toGo.toFixed(1));
+}
+
+
+/* ---------- gym buddy mascots (original characters) ---------- */
+function buddySVG(c, mood, size){
+  const arm = (d,cls)=>'<path class="arm '+cls+'" d="'+d+'" stroke="'+c+'"/>';
+  const openEyes = '<g class="blink"><circle cx="48" cy="57" r="7" fill="#fff"/><circle cx="72" cy="57" r="7" fill="#fff"/>'+
+    '<circle cx="49.5" cy="58" r="3.2" fill="#FFFFFF"/><circle cx="73.5" cy="58" r="3.2" fill="#1C1C1E"/></g>';
+  let eyes, mouth, armL, armR, extra='';
+  if(mood==='sleep'){
+    eyes='<path d="M42,57 Q48,62 54,57" class="ln"/><path d="M66,57 Q72,62 78,57" class="ln"/>';
+    mouth='<path d="M53,74 Q60,78 67,74" class="ln"/>';
+    armL=arm('M30,80 Q20,90 18,98',''); armR=arm('M90,80 Q100,90 102,98','');
+    extra='<text x="86" y="32" font-size="15" fill="#BF5AF2" font-weight="800" class="zzz">z</text>'+
+          '<text x="97" y="21" font-size="11" fill="#BF5AF2" font-weight="800" class="zzz" style="animation-delay:.7s">z</text>';
+  } else if(mood==='party'){
+    eyes=openEyes;
+    mouth='<path d="M47,71 Q60,85 73,71 Z" fill="#1C1C1E"/><path d="M53,77 Q60,81 67,77" fill="#FF9FB6"/>';
+    armL=arm('M30,76 Q15,60 13,44','armWaveL'); armR=arm('M90,76 Q105,60 107,44','armWaveR');
+    extra='<circle cx="18" cy="28" r="3.2" fill="#FFD60A"/><circle cx="104" cy="22" r="3.2" fill="#0A84FF"/><circle cx="32" cy="14" r="3.2" fill="#FF375F"/><circle cx="92" cy="10" r="2.6" fill="#30D158"/>';
+  } else {
+    eyes=openEyes;
+    mouth='<path d="M50,72 Q60,80 70,72" class="ln"/>';
+    armL=arm('M30,76 Q15,62 13,48','armWaveL'); armR=arm('M90,80 Q100,90 102,98','');
+  }
+  return '<svg viewBox="0 0 120 120" width="'+size+'" height="'+size+'" class="buddy mood-'+mood+'" aria-hidden="true">'+
+    armL+armR+
+    '<ellipse cx="46" cy="112" rx="12" ry="6" fill="'+c+'"/><ellipse cx="74" cy="112" rx="12" ry="6" fill="'+c+'"/>'+
+    '<ellipse cx="60" cy="72" rx="36" ry="40" fill="'+c+'"/>'+
+    '<ellipse cx="60" cy="86" rx="23" ry="18" fill="rgba(255,255,255,.3)"/>'+
+    '<path d="M27,47 Q60,34 93,47 L93,38 Q60,25 27,38 Z" fill="#FF453A"/>'+
+    eyes+mouth+extra+'</svg>';
+}
+function renderBuddies(g){
+  const now=new Date(); const dow=(now.getDay()+6)%7;
+  const doneToday = state.logs[todayISO()] && state.logs[todayISO()].done;
+  const mood = dow>4 ? 'sleep' : (doneToday ? 'party' : 'happy');
+  const b=document.getElementById('buddy');
+  if(b) b.innerHTML = buddySVG('#FFD60A', mood, 74);
+  const sq=document.getElementById('cheerSquad');
+  if(sq) sq.innerHTML = buddySVG('#5CE08A','party',54) + buddySVG('#79B8FF','happy',54) + buddySVG('#FF9FB6','party',54);
+}
+
+/* ---------- fuel ---------- */
+function renderFuel(g){
+  const iso=todayISO(); const log=state.logs[iso]||{};
+  const target = g.target;
+  const intake = log.intake||0;
+  const burned = log.calsBurned;
+  const steps = log.steps;
+  const pct = Math.min(100,(intake/target)*100);
+  const over = intake>target;
+  const remaining = target-intake;
+  const deficit = (burned>0) ? burned-intake : null;
+  const stepsPct = steps>0 ? Math.min(100,(steps/STEP_GOAL)*100) : 0;
+  let html =
+    '<div class="fuel-top"><div class="big">'+intake.toLocaleString()+' <small>/ '+target.toLocaleString()+' kcal</small></div>' +
+    '<div class="rem '+(over?'over':'')+'">'+(over? (intake-target).toLocaleString()+' over' : remaining.toLocaleString()+' left')+'</div></div>' +
+    '<div class="bar"><div class="fill '+(over?'over':'')+'" style="width:'+pct+'%"></div></div>';
+  if(intake>0) html += '<div style="text-align:right; margin-top:6px"><button class="minireset" onclick="resetIntake()">reset today</button></div>';
+  html += '<div class="fuel-meta">' +
+    '<div class="fm"><div class="label">Burned (Whoop)</div><div class="value">'+(burned>0?burned.toLocaleString():'—')+' <small>kcal</small></div></div>' +
+    '<div class="fm"><div class="label">Est. deficit today</div><div class="value '+(deficit==null?'':(deficit>=300?'good':(deficit<0?'bad':'')))+'">'+(deficit==null?'—':(deficit>0?'−':'+')+Math.abs(deficit).toLocaleString())+' <small>kcal</small></div></div>' +
+    '<div class="fm" style="grid-column:span 2"><div class="label">Steps · goal '+STEP_GOAL.toLocaleString()+'</div>' +
+    '<div class="value">'+(steps>0?steps.toLocaleString():'—')+(steps>=STEP_GOAL?' ✅':'')+'</div>' +
+    '<div class="bar mini"><div class="fill" style="width:'+stepsPct+'%"></div></div></div></div>';
+  document.getElementById('fuelBody').innerHTML = html;
+  document.getElementById('targetIn').value = target;
+}
+async function addMeal(){
+  const v = parseFloat(document.getElementById('mealIn').value);
+  if(isNaN(v)||v<=0||v>3000){ toast('Enter a meal between 1 and 3000 kcal'); return; }
+  const iso=todayISO();
+  state.logs[iso]=state.logs[iso]||{};
+  const firstToday = !(state.logs[iso].intake>0);
+  state.logs[iso].intake = (state.logs[iso].intake||0) + Math.round(v);
+  await persist();
+  document.getElementById('mealIn').value='';
+  const g=computeGame();
+  toast(firstToday ? '+10 XP · Fuel logging started 🥗' : '+'+Math.round(v)+' kcal logged');
+  renderFuel(g); renderGami(g); renderProgress(g); renderAwards(g);
+}
+async function resetIntake(){
+  const iso=todayISO();
+  if(state.logs[iso]) state.logs[iso].intake = 0;
+  await persist();
+  const g=computeGame();
+  toast('Today\u2019s intake reset');
+  renderFuel(g); renderGami(g); renderProgress(g); renderAwards(g);
+}
+async function saveTarget(){
+  const v = parseFloat(document.getElementById('targetIn').value);
+  if(isNaN(v)||v<1000||v>4000){ toast('Target must be 1000–4000 kcal'); return; }
+  state.settings.calTarget = Math.round(v);
+  await persist();
+  const g=computeGame();
+  toast('Daily target set: '+state.settings.calTarget+' kcal');
+  renderFuel(g); renderAwards(g);
+}
+
+/* ---------- week strip ---------- */
+function renderWeekStrip(){
+  const strip = document.getElementById('weekStrip');
+  strip.innerHTML = '';
+  const mon = mondayOf(new Date());
+  const names = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  for(let i=0;i<7;i++){
+    const d = new Date(mon); d.setDate(mon.getDate()+i);
+    const iso = todayISO(d);
+    const done = state.logs[iso] && state.logs[iso].done;
+    const tile = document.createElement('div');
+    tile.className = 'day-tile' + (iso===todayISO()?' today':'') + (done?' done':'') + (i>4?' rest':'');
+    tile.innerHTML = '<div class="dname">'+names[i]+'</div><div class="dnum">'+d.getDate()+'</div><div class="dot"></div>';
+    strip.appendChild(tile);
+  }
+}
+
+/* ---------- today ---------- */
+function renderToday(){
+  const card = document.getElementById('todayCard');
+  const now = new Date();
+  const dow = (now.getDay()+6)%7;
+  const iso = todayISO();
+  const log = state.logs[iso] || {};
+  if(dow > 4){
+    card.innerHTML = '<h2>Rest day <span class="tag">Recovery</span></h2>' +
+      '<p style="font-size:14px; color:var(--muted); line-height:1.5">No lifting today, ' + NAME + '. Get a long walk in (8\u201310k steps), stretch for 10 minutes, and protect your sleep. Muscle is built on rest days \u2014 your streak is safe.</p>';
+  } else {
+    const loc = getLoc(log);
+    const day = PLAN[dow];
+    const exs = day.m[loc];
+    const checks = getChecks(log, loc);
+    const seg = '<div class="loc-seg">' + LOCS.map(l=>
+      '<button class="loc-btn'+(l[0]===loc?' active':'')+'" onclick="setLoc(\''+l[0]+'\')">'+l[1]+'</button>').join('') + '</div>';
+    card.innerHTML = '<h2>' + day.name + '<span class="xp-chip">+50 XP</span></h2>' + seg + '<ul class="exlist">' +
+      exs.map((e,i)=>{
+        const id = 'd-t-'+i;
+        return '<li><div class="exhead">' +
+          '<input type="checkbox" ' + (checks[i]?'checked':'') + ' onchange="toggleEx('+i+',this.checked)" aria-label="Done: '+e.n+'">' +
+          '<div class="exname" onclick="toggleDetail(\'' + id + '\')">' + e.n +
+          '<span class="rx">' + e.rx + ' \u00b7 <span class="hint">tap for form \u25be</span></span></div></div>' +
+          detailHTML(e, id, false) + '</li>';
+      }).join('') +
+      '</ul><button class="btn" onclick="markDone()" ' + (log.done?'disabled':'') + '>' + (log.done?'\u2713 Workout complete \u00b7 +50 XP banked':'Mark workout complete \u00b7 +50 XP') + '</button>';
+  }
+  if(log.recovery != null) document.getElementById('recIn').value = log.recovery;
+  if(log.sleep != null) document.getElementById('sleepIn').value = log.sleep;
+  if(log.calsBurned != null) document.getElementById('burnIn').value = log.calsBurned;
+  if(log.steps != null) document.getElementById('stepsIn').value = log.steps;
+  renderWhoopAdvice(log);
+}
+function getLoc(log){ return (log && log.loc) || 'home'; }
+function getChecks(log, loc){
+  if(!log || !log.checks) return [];
+  if(Array.isArray(log.checks)) return loc==='home' ? log.checks : [];
+  return log.checks[loc] || [];
+}
+async function setLoc(l){
+  const iso = todayISO();
+  state.logs[iso] = state.logs[iso] || {};
+  state.logs[iso].loc = l;
+  await persist();
+  const lbl = LOCS.find(x=>x[0]===l)[1];
+  toast('Today: ' + lbl);
+  renderToday();
+}
+async function toggleEx(i, val){
+  const iso = todayISO();
+  state.logs[iso] = state.logs[iso] || {};
+  const log = state.logs[iso];
+  if(Array.isArray(log.checks)) log.checks = {home: log.checks};
+  log.checks = log.checks || {};
+  const loc = getLoc(log);
+  log.checks[loc] = log.checks[loc] || [];
+  log.checks[loc][i] = val;
+  await persist();
+}
+async function markDone(){
+  const iso = todayISO();
+  state.logs[iso] = state.logs[iso] || {};
+  state.logs[iso].done = true;
+  await persist();
+  const g = computeGame();
+  confetti();
+  if(g.streak>=2) toast('+50 XP · ' + g.streak + '-day streak, ' + NAME + '! 🔥');
+  else toast('+50 XP banked. Strong start, ' + NAME + '! 🔥');
+  render();
+}
+async function saveWhoop(){
+  const rec = parseFloat(document.getElementById('recIn').value);
+  const slp = parseFloat(document.getElementById('sleepIn').value);
+  const brn = parseFloat(document.getElementById('burnIn').value);
+  const stp = parseFloat(document.getElementById('stepsIn').value);
+  const iso = todayISO();
+  state.logs[iso] = state.logs[iso] || {};
+  const hadSteps = state.logs[iso].steps>=STEP_GOAL;
+  if(!isNaN(rec)) state.logs[iso].recovery = rec;
+  if(!isNaN(slp)) state.logs[iso].sleep = slp;
+  if(!isNaN(brn)) state.logs[iso].calsBurned = Math.round(brn);
+  if(!isNaN(stp)) state.logs[iso].steps = Math.round(stp);
+  await persist();
+  renderWhoopAdvice(state.logs[iso]);
+  const g = computeGame();
+  if(!hadSteps && state.logs[iso].steps>=STEP_GOAL){ toast('+10 XP · Step goal smashed 👟'); }
+  else toast('+10 XP · Check-in saved');
+  renderFuel(g); renderGami(g); renderProgress(g); renderAwards(g);
+}
+function renderWhoopAdvice(log){
+  const el = document.getElementById('whoopAdvice');
+  if(log.recovery == null){ el.innerHTML = "Log today's recovery and you'll get guidance on how hard to push."; return; }
+  const r = log.recovery;
+  if(r >= 67) el.innerHTML = '<b>Green (' + r + '%)</b> — you are primed, ' + NAME + '. Full session, plus one extra set on your first lift.';
+  else if(r >= 34) el.innerHTML = '<b>Yellow (' + r + '%)</b> — train as written. Keep rests honest, skip nothing, add nothing.';
+  else el.innerHTML = '<b>Red (' + r + '%)</b> — swap today for a 45-min walk + stretching. Get to bed early; tomorrow you attack.';
+}
+
+/* ---------- plan ---------- */
+function renderPlan(){
+  const el = document.getElementById('planList');
+  const openSet = new Set([...document.querySelectorAll('#planList details[open]')].map(x=>x.dataset.di));
+  const seg = '<div class="loc-seg">' + LOCS.map(l=>
+    '<button class="loc-btn'+(l[0]===planLoc?' active':'')+'" onclick="setPlanLoc(\''+l[0]+'\')">'+l[1]+'</button>').join('') + '</div>';
+  el.innerHTML = seg + PLAN.map((d,di)=>
+    '<details class="plan-day" data-di="'+di+'"' + ((openSet.size? openSet.has(String(di)) : di===0)?' open':'') + '><summary>' + d.name + '<span class="chip">' + d.short + '</span></summary><ul class="body exlist">' +
+    d.m[planLoc].map((e,i)=>{
+      const id = 'd-p-'+di+'-'+i;
+      return '<li><div class="exhead"><div class="exname" onclick="toggleDetail(\'' + id + '\')">' + e.n +
+        '<span class="rx">' + e.rx + ' \u00b7 <span class="hint">tap for form \u25be</span></span></div></div>' +
+        detailHTML(e, id, true) + '</li>';
+    }).join('') + '</ul></details>').join('');
+}
+let planLoc = 'home';
+function setPlanLoc(l){ planLoc = l; renderPlan(); }
+
+/* ---------- progress ---------- */
+async function saveWeight(){
+  const kg = parseFloat(document.getElementById('wKg').value);
+  const date = document.getElementById('wDate').value || todayISO();
+  if(isNaN(kg) || kg < 40 || kg > 150){ toast('Enter a weight between 40 and 150 kg'); return; }
+  const prevLowest = state.weights.length ? Math.min(...state.weights.map(w=>w.kg)) : null;
+  state.weights = state.weights.filter(w=>w.date!==date);
+  state.weights.push({date, kg});
+  state.weights.sort((a,b)=>a.date.localeCompare(b.date));
+  await persist();
+  document.getElementById('wKg').value='';
+  if(prevLowest!==null && kg < prevLowest){ confetti(); toast('+15 XP · NEW RECORD LOW: ' + kg + ' kg! 📉'); }
+  else toast('+15 XP · Weigh-in saved');
+  render();
+}
+function renderProgress(g){
+  const latest = g.latest;
+  const pct = Math.min(100, Math.max(0, (g.lost / (START_W - TARGET_W)) * 100));
+  document.getElementById('heroWeight').innerHTML = (latest ?? '—') + ' <small>kg</small>';
+  document.getElementById('goalFill').style.width = pct + '%';
+  document.getElementById('goalNote').textContent = latest
+    ? pct.toFixed(0) + '% of the way from ' + START_W + ' to ' + TARGET_W + ' kg, ' + NAME
+    : 'Log your first weigh-in below.';
+  document.getElementById('statLost').innerHTML = g.lost.toFixed(1) + ' <small>kg</small>';
+  document.getElementById('statToGo').innerHTML = g.toGo.toFixed(1) + ' <small>kg</small>';
+  const mon = mondayOf(new Date());
+  let weekCount = 0;
+  for(const [iso, log] of Object.entries(state.logs)){
+    if(log.done && new Date(iso) >= mon) weekCount++;
+  }
+  document.getElementById('statWeek').innerHTML = weekCount + ' <small>/ 5</small>';
+  document.getElementById('statTotal').textContent = g.total;
+  document.getElementById('statIntake').innerHTML = (g.avgIntake ?? '—') + ' <small>kcal</small>';
+  const defEl = document.getElementById('statDeficit');
+  if(g.avgDeficit==null) defEl.innerHTML = '— <small>kcal</small>';
+  else defEl.innerHTML = (g.avgDeficit>0?'−':'+') + Math.abs(g.avgDeficit) + ' <small>kcal</small>';
+  renderChart();
+  renderWeightList();
+}
+function renderChart(){
+  const el = document.getElementById('chart');
+  const ws = state.weights;
+  if(ws.length < 2){
+    el.innerHTML = '<div class="empty">' + (ws.length===1 ? 'One point logged — one more and the trend appears.' : 'No weigh-ins yet — your trend line will appear here.') + '</div>';
+    return;
+  }
+  const W=560, H=180, P=28;
+  const kgs = ws.map(w=>w.kg);
+  const min = Math.min(...kgs, TARGET_W)-0.5, max = Math.max(...kgs, START_W)+0.5;
+  const x = i => P + (i/(ws.length-1))*(W-2*P);
+  const y = v => H-P - ((v-min)/(max-min))*(H-2*P);
+  const pts = ws.map((w,i)=>x(i)+','+y(w.kg)).join(' ');
+  const targetY = y(TARGET_W);
+  el.innerHTML = '<svg viewBox="0 0 '+W+' '+H+'" width="100%" role="img" aria-label="Weight trend chart">' +
+    '<line x1="'+P+'" y1="'+targetY+'" x2="'+(W-P)+'" y2="'+targetY+'" stroke="#30D158" stroke-dasharray="5,5" stroke-width="1.5"/>' +
+    '<text x="'+(W-P)+'" y="'+(targetY-6)+'" text-anchor="end" font-size="11" fill="#30D158" font-weight="700">target '+TARGET_W+' kg</text>' +
+    '<polyline points="'+pts+'" fill="none" stroke="#FF453A" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>' +
+    ws.map((w,i)=>'<circle cx="'+x(i)+'" cy="'+y(w.kg)+'" r="3.5" fill="#FF453A"/>').join('') +
+    '<text x="'+x(ws.length-1)+'" y="'+(y(ws[ws.length-1].kg)-9)+'" text-anchor="middle" font-size="11" font-weight="800" fill="#FFFFFF">'+ws[ws.length-1].kg+'</text></svg>';
+}
+function renderWeightList(){
+  const el = document.getElementById('weightList');
+  const ws = [...state.weights].reverse().slice(0,8);
+  el.innerHTML = ws.map((w,i)=>{
+    const prev = state.weights[state.weights.length-2-i];
+    let delta = '';
+    if(prev){
+      const d = w.kg - prev.kg;
+      delta = '<span class="' + (d<=0?'delta-down':'delta-up') + '">' + (d>0?'+':'') + d.toFixed(1) + '</span>';
+    }
+    return '<div class="wrow"><span>' + w.date + '</span><span><b>' + w.kg + ' kg</b> ' + delta + '</span></div>';
+  }).join('');
+}
+
+function renderAwards(g){
+  document.getElementById('recStreak').innerHTML = g.longestStreak + ' <small>days</small>';
+  document.getElementById('recWeek').innerHTML = g.bestWeek + ' <small>/ 5</small>';
+  document.getElementById('recLow').innerHTML = (g.lowest ?? '—') + ' <small>kg</small>';
+  document.getElementById('recXP').textContent = g.xp;
+  const grid = document.getElementById('badgeGrid');
+  let earned=0;
+  grid.innerHTML = BADGES.map(b=>{
+    const ok = b.test(g); if(ok) earned++;
+    return '<div class="badge '+(ok?'earned':'locked')+'"><div class="bicon">'+b.icon+'</div><div class="bname">'+b.name+'</div><div class="bdesc">'+b.desc+'</div></div>';
+  }).join('');
+  document.getElementById('badgeCount').textContent = earned + ' / ' + BADGES.length;
+}
+
+function confetti(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const colors=['#FF453A','#FFD60A','#30D158','#FFFFFF','#FF375F'];
+  for(let i=0;i<28;i++){
+    const c=document.createElement('div');
+    c.className='confetti';
+    c.style.left=(Math.random()*100)+'vw';
+    c.style.width=(6+Math.random()*6)+'px';
+    c.style.height=(8+Math.random()*8)+'px';
+    c.style.background=colors[i%colors.length];
+    c.style.animationDuration=(1.6+Math.random()*1.4)+'s';
+    c.style.animationDelay=(Math.random()*0.3)+'s';
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(), 3400);
+  }
+}
+
+function render(){
+  const g = computeGame();
+  renderGami(g);
+  renderWeekStrip();
+  renderToday();
+  renderFuel(g);
+  renderPlan();
+  renderProgress(g);
+  renderAwards(g);
+  renderBuddies(g);
+  wRenderGrid();
+  document.getElementById('wDate').value = todayISO();
+}
+
+/* ============ app switcher ============ */
+function showApp(name){
+  ['menu','workout','cfa','rituals'].forEach(n=>{
+    document.getElementById('app-'+n).classList.toggle('hidden', n!==name);
+  });
+  window.scrollTo(0,0);
+}
+function renderMenuBuddies(){
+  const w=document.getElementById('menuBuddyW');
+  if(w) w.innerHTML = buddySVG('#FFD60A','party',58);
+  const c=document.getElementById('menuBuddyC');
+  if(c) c.innerHTML = buddySVG('#7CE8A4','happy',58);
+  const rr=document.getElementById('menuBuddyR');
+  if(rr) rr.innerHTML = buddySVG('#FF9FB6','happy',58);
+}
+
+/* ============ Daily Rituals (non-negotiables) ============ */
+const RIT_KEY = 'rituals-v1';
+const RITUALS = [
+ {sec:'\ud83c\udf05 Morning \u00b7 wake-up stack', items:[
+  {id:'shilajit', n:'Shilajit in lukewarm water', t:'6:30 AM', note:'Empty stomach, first thing \u2014 wait ~30 min before food for best absorption.'},
+  {id:'icedip', n:'Ice face dip', t:'6:45 AM', note:'3\u20135 dips of 15\u201330 sec. Depuffs and wakes the skin before product goes on.'},
+  {id:'amskin', n:'Moisturiser + sunscreen', t:'7:00 AM', note:'Moisturiser first, SPF last. Sunscreen is non-negotiable \u2014 without it the pigmentation serum works for nothing.'},
+  {id:'collagen', n:'Collagen powder drink', t:'7:30 AM', note:'Mix in water or juice \u2014 pairing with vitamin C helps synthesis.'},
+  {id:'biotin', n:'Biotin gummies', t:'8:30 AM', note:'With breakfast \u2014 easier on the stomach, easy to remember.'}]},
+ {sec:'\u2600\ufe0f Afternoon \u00b7 with lunch', items:[
+  {id:'fishoil', n:'Fish oil tablet', t:'1:30 PM', note:'Always with a proper meal \u2014 dietary fat boosts omega-3 absorption and prevents fishy burps.'}]},
+ {sec:'\ud83c\udf19 Night \u00b7 wind-down stack', items:[
+  {id:'ashwa', n:'Ashwagandha', t:'9:30 PM', note:'After dinner \u2014 supports sleep quality and evening cortisol wind-down.'},
+  {id:'serum', n:'Night serum (pigmentation)', t:'10:30 PM', note:'On clean, dry skin as the last step before bed. Consistency for 8\u201312 weeks is what fades pigmentation.'}]}
+];
+const RIT_ALL = RITUALS.flatMap(s=>s.items.map(i=>i.id));
+let rit = { days:{} };
+let rGridOff = 0;
+
+async function ritInit(){
+  try{
+    const r = await window.storage.get(RIT_KEY);
+    if(r && r.value) rit = Object.assign(rit, JSON.parse(r.value));
+  }catch(e){ /* first run */ }
+  renderRIT();
+}
+async function ritPersist(){
+  try{ await window.storage.set(RIT_KEY, JSON.stringify(rit)); }
+  catch(e){ toast('Could not save \u2014 try again'); }
+}
+function ritDoneCount(iso){
+  const d = rit.days[iso]||{};
+  return RIT_ALL.filter(id=>d[id]).length;
+}
+async function ritToggle(id, val){
+  const iso = todayISO();
+  rit.days[iso] = rit.days[iso] || {};
+  rit.days[iso][id] = val;
+  await ritPersist();
+  const n = ritDoneCount(iso);
+  if(val && n === RIT_ALL.length){ confetti(); toast('Perfect day, ' + NAME + '! All 8 done \ud83c\udf3f'); }
+  else if(val) toast(n + ' / ' + RIT_ALL.length + ' done');
+  renderRIT();
+}
+function rRenderGrid(){
+  const g = monthGrid(rGridOff, iso=>{
+    const n = ritDoneCount(iso);
+    if(n >= RIT_ALL.length) return 3;
+    if(n >= 4) return 2;
+    if(n >= 1) return 1;
+    return 0;
+  });
+  const el = document.getElementById('rGrid'); if(!el) return;
+  el.innerHTML = g.html;
+  document.getElementById('rGridLabel').textContent = g.label;
+}
+function rGridNav(d){ rGridOff += d; if(rGridOff>0) rGridOff=0; rRenderGrid(); }
+function renderRIT(){
+  const iso = todayISO();
+  const today = rit.days[iso]||{};
+  const n = ritDoneCount(iso);
+  // perfect-day streak: consecutive all-8 days; today pending doesn't break
+  let streak=0; const d=new Date(); let first=true;
+  while(true){
+    const full = ritDoneCount(todayISO(d)) >= RIT_ALL.length;
+    if(full) streak++;
+    else if(!first) break;
+    first=false;
+    d.setDate(d.getDate()-1);
+    if(streak>1000) break;
+  }
+  document.getElementById('ritCount').textContent = n;
+  document.getElementById('ritRing').style.strokeDashoffset = (169.6*(1-Math.min(1,n/RIT_ALL.length))).toFixed(1);
+  document.getElementById('ritStreak').textContent = streak;
+  document.getElementById('ritFlame').textContent = streak>=7 ? '\ud83c\udf3f\ud83d\udd25' : '\ud83c\udf3f';
+  document.getElementById('ritTitle').textContent = n===RIT_ALL.length ? 'Perfect day banked' : (RIT_ALL.length-n) + ' rituals remaining';
+  document.getElementById('ritSub').textContent = n===RIT_ALL.length
+    ? 'Every box ticked. This is how skin, sleep and discipline compound.'
+    : 'Tick every ritual to keep the perfect-day chain alive.';
+  document.getElementById('ritList').innerHTML = RITUALS.map(sec=>
+    '<div class="rit-time">'+sec.sec+'</div>' +
+    sec.items.map(it=>
+      '<label class="rit-item'+(today[it.id]?' ritdone':'')+'">'+
+      '<input type="checkbox" '+(today[it.id]?'checked':'')+' onchange="ritToggle(\''+it.id+'\',this.checked)">'+
+      '<span class="ri-body"><span class="ri-name">'+it.n+'</span><span class="ri-note">'+it.note+'</span></span>'+
+      '<span class="ri-time">'+it.t+'</span></label>').join('')
+  ).join('');
+  const b=document.getElementById('ritBuddy');
+  if(b) b.innerHTML = buddySVG('#FF9FB6', n===RIT_ALL.length?'party':'happy', 74);
+  rRenderGrid();
+}
+
+/* ============ CFA Level 1 tracker ============ */
+const CFA_KEY = 'cfa-tracker-v1';
+/* Official 2027 CFA Level 1 curriculum — 102 learning modules */
+const CFA_TOPICS = [
+ ['ethics','Ethical & Professional Standards',15,[
+  'Ethics and Trust in the Investment Profession','Code of Ethics and Standards of Professional Conduct',
+  'Guidance for Standard I: Professionalism','Guidance for Standard II: Integrity of Capital Markets',
+  'Guidance for Standard III: Duties to Clients','Guidance for Standard IV: Duties to Employers',
+  'Guidance for Standard V: Investment Analysis, Recommendations, and Actions',
+  'Guidance for Standard VI: Conflicts of Interest',
+  'Guidance for Standard VII: Responsibilities as a Member or Candidate',
+  'Application of the Code and Standards: Level I']],
+ ['quant','Quantitative Methods',8,[
+  'Returns of Financial Assets and Instruments','Types of Financial Returns','Benchmarking Returns',
+  'The Time Value of Money in Finance','Statistical Characteristics of Asset Returns',
+  'Statistical Distributions for Financial Asset Prices and Returns','Estimation and Hypothesis Testing',
+  'The Return and Risk of a Financial Portfolio','Simulation of Financial Asset Prices and Returns',
+  'Applications of Simple Linear Regression in Finance','Introduction to Financial Data Science']],
+ ['econ','Economics',8,[
+  'The Firm and Market Structures','Understanding Business Cycles','Fiscal Policy','Monetary Policy',
+  'Introduction to Geopolitics','International Trade','Capital Flows and the FX Market','Exchange Rate Calculations']],
+ ['fsa','Financial Statement Analysis',13,[
+  'Introduction to Financial Statement Analysis','Analyzing Income Statements','Analyzing Balance Sheets',
+  'Analyzing Statements of Cash Flows I','Analyzing Statements of Cash Flows II','Analysis of Inventories',
+  'Analysis of Long-Term Assets','Topics in Long-Term Liabilities and Equity','Analysis of Income Taxes',
+  'Financial Reporting Quality','Financial Analysis Techniques','Introduction to Financial Statement Modeling']],
+ ['corp','Corporate Finance',8,[
+  'Organizational Forms, Corporate Issuer Features, and Ownership','Investors and Other Stakeholders',
+  'Corporate Governance: Conflicts, Mechanisms, Risks, and Benefits','Working Capital and Liquidity',
+  'Capital Investments and Capital Allocation','Capital Structure','Business Models']],
+ ['equity','Equities',13,[
+  'Equity Instrument Features','Equity Jurisdictions, Classes, and the Voting Process','Equity Issuance and Trading',
+  'Sources of Equity Returns','Introduction to Equity Valuation','Discounted Cash Flow (DCF) and Growth Models',
+  'Relative Value Equity Valuation Approaches','Financial Statement Forecasting in Equity Valuation',
+  'Industry and Competitive Analysis','Company Analysis: Past, Present, and Future','Equity Analyst Research Reports',
+  'The CAPM, Market Model, and Other Factor-Based Equity Models']],
+ ['fixed','Fixed Income',13,[
+  'Fixed-Income Instrument Features','Fixed-Income Cash Flows and Types','Fixed-Income Issuance and Trading',
+  'Fixed-Income Markets for Corporate Issuers','Fixed-Income Markets for Government Issuers',
+  'Fixed-Income Bond Valuation: Prices and Yields','Yield and Yield Spread Measures for Fixed-Rate Bonds',
+  'Yield and Yield Spread Measures for Floating-Rate Instruments',
+  'The Term Structure of Interest Rates: Spot, Par, and Forward Curves','Interest Rate Risk and Return',
+  'Yield-Based Bond Duration Measures and Properties','Yield-Based Bond Convexity and Portfolio Properties',
+  'Curve-Based and Empirical Fixed-Income Risk Measures','Credit Risk','Credit Analysis for Government Issuers',
+  'Credit Analysis for Corporate Issuers','Fixed-Income Securitization',
+  'Asset-Backed Security (ABS) Instrument and Market Features',
+  'Mortgage-Backed Security (MBS) Instrument and Market Features']],
+ ['deriv','Derivatives',6,[
+  'Derivative Instrument and Derivative Market Features','Forward Commitment and Contingent Claim Features and Instruments',
+  'Derivative Benefits, Risks, and Issuer and Investor Uses','Arbitrage, Replication, and the Cost of Carry in Pricing Derivatives',
+  'Pricing and Valuation of Forward Contracts','Pricing and Valuation of Futures Contracts',
+  'Pricing and Valuation of Interest Rate and Other Swaps','Pricing and Valuation of Options',
+  'Option Replication Using Put\u2013Call Parity','Valuing a Derivative Using a One-Period Binomial Model']],
+ ['alts','Alternative Investments',7,[
+  'Alternative Investment Features, Methods, and Structures','Alternative Investment Performance and Returns',
+  'Investments in Private Capital: Equity and Debt','Real Estate and Infrastructure','Natural Resources',
+  'Hedge Funds','Introduction to Digital Assets']],
+ ['pm','Portfolio Construction',9,[
+  'Portfolio Risk and Return: Part I','Portfolio Risk and Return: Part II','Portfolio Management: An Overview',
+  'Basics of Portfolio Planning and Construction','The Behavioral Biases of Individuals','Introduction to Risk Management']]
+];
+const CFA_TOTAL_CH = CFA_TOPICS.reduce((a,t)=>a+t[3].length,0);
+const CFA_MOTTOS = [
+  'DAYS days out, NAME. One learning module at a time.',
+  'Ethics first, NAME \u2014 it breaks ties on the pass line.',
+  'HRSWK hrs/week keeps the mission on track, NAME.',
+  'Consistency beats cramming, NAME. Log the hour.',
+  'Future charterholder walking, NAME. DAYS days to go.'
+];
+const CFA_EXAM = '2027-02-22';      /* Feb 2027 window: 22-28 Feb */
+const CFA_REG_END = '2026-11-05';   /* final registration deadline */
+let cfa = { goal:300, hours:{}, ch:{}, rev:{} };
+
+async function cfaInit(){
+  try{
+    const r = await window.storage.get(CFA_KEY);
+    if(r && r.value) cfa = Object.assign(cfa, JSON.parse(r.value));
+  }catch(e){ /* first run */ }
+  if(!cfa.ch) cfa.ch = {};
+  if(!cfa.rev) cfa.rev = {};
+  renderCFA();
+  renderMenuBuddies();
+  showApp('menu');
+}
+async function cfaPersist(){
+  try{ await window.storage.set(CFA_KEY, JSON.stringify(cfa)); }
+  catch(e){ toast('Could not save \u2014 try again'); }
+}
+async function cfaLogHours(){
+  const h = parseFloat(document.getElementById('cfaHrs').value);
+  const date = document.getElementById('cfaDate').value || todayISO();
+  if(isNaN(h)||h<=0||h>16){ toast('Enter between 0.25 and 16 hours'); return; }
+  cfa.hours[date] = Math.round(((cfa.hours[date]||0)+h)*100)/100;
+  await cfaPersist();
+  document.getElementById('cfaHrs').value='';
+  confetti();
+  toast('+'+h+' hrs logged. Compounding, Ashutosh \ud83d\udcda');
+  renderCFA();
+}
+async function cfaToggleCh(tid, i, val){
+  cfa.ch[tid] = cfa.ch[tid] || [];
+  cfa.ch[tid][i] = val;
+  await cfaPersist();
+  const t = CFA_TOPICS.find(x=>x[0]===tid);
+  const done = (cfa.ch[tid]||[]).filter(Boolean).length;
+  if(val && done===t[3].length){ confetti(); toast(t[1]+' complete! \ud83c\udfc6'); }
+  else if(val) toast('Module done \u2713');
+  renderCFA();
+}
+async function cfaRev(tid, i, d){
+  cfa.rev[tid] = cfa.rev[tid] || [];
+  const nv = Math.max(0, (cfa.rev[tid][i]||0) + d);
+  cfa.rev[tid][i] = nv;
+  await cfaPersist();
+  if(d>0){ toast('Revision #'+nv+' logged \ud83d\udd01'); if(nv===3) confetti(); }
+  renderCFA();
+}
+function cfaTopicDone(tid){ return (cfa.ch[tid]||[]).filter(Boolean).length; }
+
+/* ---- GitHub-style monthly grids ---- */
+let wGridOff = 0, cGridOff = 0, cfaLastPace = 0;
+function monthGrid(off, valFn){
+  const base = new Date(); base.setDate(1); base.setMonth(base.getMonth()+off);
+  const y = base.getFullYear(), m = base.getMonth();
+  const label = base.toLocaleString('en-GB', {month:'long', year:'numeric'});
+  const firstDow = (new Date(y,m,1).getDay()+6)%7;
+  const daysIn = new Date(y,m+1,0).getDate();
+  let html = '<div class="mgrid">' + ['M','T','W','T','F','S','S'].map(h=>'<div class="hd">'+h+'</div>').join('');
+  for(let i=0;i<firstDow;i++) html += '<div class="mcell blank"></div>';
+  const tISO = todayISO();
+  for(let d=1; d<=daysIn; d++){
+    const iso = todayISO(new Date(y,m,d));
+    const lvl = valFn(iso);
+    html += '<div class="mcell h'+lvl+(iso===tISO?' tod':'')+'">'+d+'</div>';
+  }
+  return {label, html: html+'</div>'};
+}
+function wRenderGrid(){
+  const g = monthGrid(wGridOff, iso=>{
+    const log = state.logs[iso];
+    if(log && log.done) return 3;
+    if(log && log.checks){
+      const arrs = Array.isArray(log.checks) ? [log.checks] : Object.values(log.checks);
+      if(arrs.some(a=>(a||[]).some(Boolean))) return 1;
+    }
+    return 0;
+  });
+  const el = document.getElementById('wGrid'); if(!el) return;
+  el.innerHTML = g.html;
+  document.getElementById('wGridLabel').textContent = g.label;
+  let done28 = 0;
+  for(let i=0;i<28;i++){
+    const dd = new Date(); dd.setDate(dd.getDate()-i);
+    const log = state.logs[todayISO(dd)];
+    if(log && log.done) done28++;
+  }
+  const cur = Math.round((done28/4)*10)/10;
+  document.getElementById('wPaceCur').textContent = cur + ' /wk';
+  const st = document.getElementById('wPaceStatus');
+  if(cur >= 4.5){ st.textContent = 'On track \ud83d\udcaa'; st.className = 'pace-good'; }
+  else if(cur >= 3){ st.textContent = 'Nearly \u2014 push'; st.className = ''; }
+  else { st.textContent = 'Behind \u2014 go!'; st.className = 'pace-bad'; }
+}
+function wGridNav(d){ wGridOff += d; if(wGridOff>0) wGridOff=0; wRenderGrid(); }
+function cRenderGrid(){
+  const g = monthGrid(cGridOff, iso=>{
+    const h = cfa.hours[iso]||0;
+    return h>=2?3 : h>=1?2 : h>0?1 : 0;
+  });
+  const el = document.getElementById('cGrid'); if(!el) return;
+  el.innerHTML = g.html;
+  document.getElementById('cGridLabel').textContent = g.label;
+  let hrs28 = 0;
+  for(let i=0;i<28;i++){
+    const dd = new Date(); dd.setDate(dd.getDate()-i);
+    hrs28 += (cfa.hours[todayISO(dd)]||0);
+  }
+  const cur = Math.round((hrs28/4)*10)/10;
+  document.getElementById('cPaceNeed').textContent = cfaLastPace + ' h/wk';
+  document.getElementById('cPaceCur').textContent = cur + ' h/wk';
+  const st = document.getElementById('cPaceStatus');
+  if(cur >= cfaLastPace){ st.textContent = 'Ahead \ud83d\ude80'; st.className = 'pace-good'; }
+  else if(cur >= cfaLastPace*0.75){ st.textContent = 'Close \u2014 push'; st.className = ''; }
+  else { st.textContent = 'Behind \u2014 go!'; st.className = 'pace-bad'; }
+}
+function cGridNav(d){ cGridOff += d; if(cGridOff>0) cGridOff=0; cRenderGrid(); }
+function renderCFA(){
+  const today = new Date(todayISO());
+  const exam = new Date(CFA_EXAM);
+  const days = Math.max(0, Math.ceil((exam - today)/86400000));
+  const weeks = Math.max(0.2, days/7);
+  let total=0;
+  for(const v of Object.values(cfa.hours)) total+=v;
+  total = Math.round(total*10)/10;
+  const mon = mondayOf(new Date());
+  let weekHrs=0;
+  for(const [iso,v] of Object.entries(cfa.hours)){
+    if(new Date(iso) >= mon) weekHrs+=v;
+  }
+  weekHrs = Math.round(weekHrs*10)/10;
+  const pace = Math.max(0, Math.round(((cfa.goal-total)/weeks)*10)/10);
+  let streak=0; const d=new Date(); let first=true;
+  while(true){
+    const has = (cfa.hours[todayISO(d)]||0) > 0;
+    if(has) streak++;
+    else if(!first) break;
+    first=false;
+    d.setDate(d.getDate()-1);
+    if(streak>1000) break;
+  }
+  // readiness = exam-weighted chapter completion
+  let ready=0, chDone=0;
+  for(const t of CFA_TOPICS){
+    const done = cfaTopicDone(t[0]);
+    chDone += done;
+    ready += t[2] * (done / t[3].length);
+  }
+  ready = Math.round(ready);
+  document.getElementById('cfaDays').textContent = days + ' days to exam';
+  document.getElementById('cfaHoursFill').style.width = Math.min(100,(total/cfa.goal)*100)+'%';
+  document.getElementById('cfaHoursText').textContent = total + ' / ' + cfa.goal + ' hours logged';
+  document.getElementById('cfaStreak').textContent = streak;
+  document.getElementById('cfaFlame').textContent = streak>=7 ? '\ud83d\udcda\ud83d\udd25' : '\ud83d\udcda';
+  document.getElementById('cfaReady').innerHTML = ready + '<small>%</small>';
+  document.getElementById('cfaWeekHrs').innerHTML = weekHrs + ' <small>hrs</small>';
+  cfaLastPace = pace;
+  let revTotal = 0;
+  for(const arr of Object.values(cfa.rev||{})) for(const n of arr||[]) revTotal += (n||0);
+  document.getElementById('cfaRevTotal').innerHTML = revTotal + ' <small>\ud83d\udd01</small>';
+  const regDays = Math.ceil((new Date(CFA_REG_END) - today)/86400000);
+  document.getElementById('cfaReg').textContent = regDays > 0
+    ? '\u26a0\ufe0f Registration closes 5 Nov 2026 \u00b7 ' + regDays + ' days left'
+    : '\u2705 Registration window closed \u2014 locked in for Feb 2027';
+  document.getElementById('cfaWeeks').textContent = Math.floor(weeks);
+  document.getElementById('cfaChCount').textContent = chDone + ' / ' + CFA_TOTAL_CH;
+  // preserve which topic accordions are open across re-renders
+  const openSet = new Set([...document.querySelectorAll('#cfaTopics details[open]')].map(el=>el.dataset.tid));
+  document.getElementById('cfaTopics').innerHTML = CFA_TOPICS.map(t=>{
+    const done = cfaTopicDone(t[0]);
+    const n = t[3].length;
+    const pct = Math.round((done/n)*100);
+    const marks = cfa.ch[t[0]]||[];
+    const revs = cfa.rev[t[0]]||[];
+    return '<details class="plan-day" data-tid="'+t[0]+'"'+(openSet.has(t[0])?' open':'')+'>'+
+      '<summary><span class="cfa-sum"><span class="nm">'+t[1]+'</span>'+
+      '<span class="cfa-minibar"><i style="width:'+pct+'%"></i></span></span>'+
+      '<span class="chip">'+done+'/'+n+' \u00b7 '+t[2]+'%</span></summary>'+
+      '<div class="body">'+
+      t[3].map((c,i)=>'<div class="cfa-ch'+(marks[i]?' donech':'')+'">'+
+        '<label><input type="checkbox" '+(marks[i]?'checked':'')+' onchange="cfaToggleCh(\''+t[0]+'\','+i+',this.checked)">'+
+        '<span class="num">'+(i+1)+'.</span><span class="chnm">'+c+'</span></label>'+
+        '<span class="revctl"><button onclick="cfaRev(\''+t[0]+'\','+i+',-1)" aria-label="Remove revision">\u2212</button>'+
+        '<span class="rv">\ud83d\udd01 '+(revs[i]||0)+'</span>'+
+        '<button onclick="cfaRev(\''+t[0]+'\','+i+',1)" aria-label="Add revision">+</button></span></div>').join('')+
+      '</div></details>';
+  }).join('');
+  document.getElementById('cfaDate').value = todayISO();
+  const studiedToday = (cfa.hours[todayISO()]||0) > 0;
+  const cb=document.getElementById('cfaBuddy');
+  if(cb) cb.innerHTML = buddySVG('#7CE8A4', studiedToday?'party':'happy', 74);
+  const pick = CFA_MOTTOS[ new Date().getDate() % CFA_MOTTOS.length ];
+  document.getElementById('cfaMotto').textContent = pick
+    .replaceAll('NAME', NAME).replaceAll('DAYS', days).replaceAll('HRSWK', pace);
+  cRenderGrid();
+}
+
+load();
+cfaInit();
+ritInit();
 </script>
 </body>
 </html>
